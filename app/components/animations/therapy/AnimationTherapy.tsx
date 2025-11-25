@@ -1,23 +1,25 @@
-"use client";
+'use client';
 import { useEffect, useRef } from "react";
 
 export default function AnimationTherapy() {
-  const canvasRef = useRef(null);
-  const animationRef = useRef(null); // keep track of requestAnimationFrame
-  const isVisible = useRef(false);  // visibility flag
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animationRef = useRef<number | null>(null); // track requestAnimationFrame
+  const isVisible = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
 
-    // Function to match the canvas size to the displayed size
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return; // ✅ make sure ctx exists
+
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect();
 
       canvas.width = rect.width * window.devicePixelRatio;
       canvas.height = rect.height * window.devicePixelRatio;
 
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 
       return { width: rect.width, height: rect.height };
@@ -25,7 +27,6 @@ export default function AnimationTherapy() {
 
     let { width, height } = resizeCanvas();
 
-    // Glow + fade configuration
     let glowPulse = 0;
     let glowDirection = 1;
 
@@ -38,7 +39,7 @@ export default function AnimationTherapy() {
     let offset = 0;
 
     const draw = () => {
-      if (!isVisible.current) return; // ✅ STOP animation when not visible
+      if (!isVisible.current) return;
 
       ctx.clearRect(0, 0, width, height);
 
@@ -71,20 +72,15 @@ export default function AnimationTherapy() {
       animationRef.current = requestAnimationFrame(draw);
     };
 
-    // ✅ IntersectionObserver to detect visibility
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          isVisible.current = true;
-          draw(); // start animation
-        } else {
-          isVisible.current = false;
-          cancelAnimationFrame(animationRef.current); // stop animation
-        }
-      },
-      { threshold: 0.1 }
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        isVisible.current = true;
+        draw();
+      } else {
+        isVisible.current = false;
+        if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      }
+    }, { threshold: 0.1 });
 
     observer.observe(canvas);
 
@@ -97,7 +93,7 @@ export default function AnimationTherapy() {
     window.addEventListener("resize", handleResize);
 
     return () => {
-      cancelAnimationFrame(animationRef.current);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
       observer.disconnect();
       window.removeEventListener("resize", handleResize);
     };

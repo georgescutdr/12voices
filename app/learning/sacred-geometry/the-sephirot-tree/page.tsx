@@ -39,7 +39,7 @@ const TheSephirotTreePage: React.FC = () => {
       </div>
 
       {/* Divider */}
-      <div className="w-full border-t border-gray-300 my-8"></div>
+      <div className="w-full border-t border-gray-300"></div>
 
       {/* Section 2: Description */}
       <div className="w-full h-auto bg-gray-50 flex items-center justify-center p-6 md:p-12">

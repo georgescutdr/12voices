@@ -2,7 +2,20 @@
 
 import { useEffect, useRef, useState, Suspense } from 'react';
 
-const positions = {
+type SephiraId =
+  | 'keter'
+  | 'chokhmah'
+  | 'binah'
+  | 'chesed'
+  | 'gevurah'
+  | 'tiferet'
+  | 'daat'
+  | 'netzach'
+  | 'hod'
+  | 'yesod'
+  | 'malkuth';
+
+const positions: Record<SephiraId, { x: number; y: number }> = {
   keter: { x: 180, y: 0 },
   chokhmah: { x: 80, y: 80 },
   binah: { x: 280, y: 80 },
@@ -19,47 +32,60 @@ const positions = {
 const groups = [
   {
     color: '#e74c3c',
-    sephirot: ['keter', 'chokhmah', 'binah'],
+    sephirot: ['keter', 'chokhmah', 'binah'] as SephiraId[],
     connections: [
-      ['keter', 'chokhmah'], ['keter', 'binah'], ['chokhmah', 'binah'],
-      ['keter', 'tiferet'], ['chokhmah', 'tiferet'], ['binah', 'tiferet']
-    ]
+      ['keter', 'chokhmah'],
+      ['keter', 'binah'],
+      ['chokhmah', 'binah'],
+      ['keter', 'tiferet'],
+      ['chokhmah', 'tiferet'],
+      ['binah', 'tiferet']
+    ] as [SephiraId, SephiraId][]
   },
   {
     color: '#3498db',
-    sephirot: ['chokhmah', 'chesed', 'tiferet', 'daat'],
+    sephirot: ['chokhmah', 'chesed', 'tiferet', 'daat'] as SephiraId[],
     connections: [
-      ['chokhmah', 'chesed'], ['chesed', 'tiferet'], ['chesed', 'gevurah'],
-      ['chesed', 'netzach'], ['gevurah', 'hod'], ['chesed', 'daat'],
-      ['daat', 'gevurah'], ['daat', 'binah'], ['daat', 'chokhmah']
-    ]
+      ['chokhmah', 'chesed'],
+      ['chesed', 'tiferet'],
+      ['chesed', 'gevurah'],
+      ['chesed', 'netzach'],
+      ['gevurah', 'hod'],
+      ['chesed', 'daat'],
+      ['daat', 'gevurah'],
+      ['daat', 'binah'],
+      ['daat', 'chokhmah']
+    ] as [SephiraId, SephiraId][]
   },
   {
     color: '#9b59b6',
-    sephirot: ['binah', 'gevurah', 'tiferet'],
-    connections: [['binah', 'gevurah'], ['gevurah', 'tiferet']]
+    sephirot: ['binah', 'gevurah', 'tiferet'] as SephiraId[],
+    connections: [['binah', 'gevurah'], ['gevurah', 'tiferet']] as [SephiraId, SephiraId][]
   },
   {
     color: '#27ae60',
-    sephirot: ['tiferet', 'netzach', 'hod', 'yesod'],
+    sephirot: ['tiferet', 'netzach', 'hod', 'yesod'] as SephiraId[],
     connections: [
-      ['tiferet', 'netzach'], ['tiferet', 'hod'],
-      ['netzach', 'yesod'], ['hod', 'yesod'],
-      ['hod', 'netzach'], ['yesod', 'tiferet']
-    ]
+      ['tiferet', 'netzach'],
+      ['tiferet', 'hod'],
+      ['netzach', 'yesod'],
+      ['hod', 'yesod'],
+      ['hod', 'netzach'],
+      ['yesod', 'tiferet']
+    ] as [SephiraId, SephiraId][]
   },
   {
     color: '#f39c12',
-    sephirot: ['yesod', 'malkuth'],
+    sephirot: ['yesod', 'malkuth'] as SephiraId[],
     connections: [
       ['yesod', 'malkuth'],
       ['malkuth', 'netzach'],
       ['malkuth', 'hod']
-    ]
+    ] as [SephiraId, SephiraId][]
   }
 ];
 
-const sephirotsList = [
+const sephirotsList: { id: SephiraId; name: string }[] = [
   { id: 'keter', name: 'Keter' },
   { id: 'chokhmah', name: 'Chokhmah' },
   { id: 'binah', name: 'Binah' },
@@ -74,10 +100,10 @@ const sephirotsList = [
 ];
 
 export default function SephirotTreePage() {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<SephiraId | null>(null);
   const treeRef = useRef<HTMLDivElement>(null);
   const [ContentComponent, setContentComponent] = useState<React.ComponentType | null>(null);
-  const [allContent, setAllContent] = useState<Record<string, React.ComponentType>>({});
+  const [allContent, setAllContent] = useState<Record<SephiraId, React.ComponentType>>({} as Record<SephiraId, React.ComponentType>);
 
   function capitalize(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -102,7 +128,7 @@ export default function SephirotTreePage() {
         const y2 = el2.offsetTop + 20;
 
         const length = Math.hypot(x2 - x1, y2 - y1);
-        const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+        const angle = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
 
         const line = document.createElement('div');
         line.className = 'line absolute h-[2px] origin-top-left';
@@ -141,7 +167,7 @@ export default function SephirotTreePage() {
   // Preload all content for small screens
   useEffect(() => {
     const loadAll = async () => {
-      const result: Record<string, React.ComponentType> = {};
+      const result: Record<SephiraId, React.ComponentType> = {} as Record<SephiraId, React.ComponentType>;
       await Promise.all(
         sephirotsList.map(async (s) => {
           try {
