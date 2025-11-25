@@ -65,6 +65,7 @@ export default function AnimationChakra6() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const runningRef = useRef<boolean>(true);
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -73,11 +74,10 @@ export default function AnimationChakra6() {
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    ctxRef.current = ctx;
 
     let W = container.clientWidth;
     let H = container.clientHeight;
-    canvas.width = W;
-    canvas.height = H;
 
     const resize = () => {
       W = container.clientWidth;
@@ -85,6 +85,8 @@ export default function AnimationChakra6() {
       canvas.width = W;
       canvas.height = H;
     };
+
+    resize();
     window.addEventListener('resize', resize);
 
     const chakra: Chakra = {
@@ -99,7 +101,7 @@ export default function AnimationChakra6() {
 
     const particles: Particle[] = [];
 
-    function drawPetal(ctx: CanvasRenderingContext2D, angle: number, color: string): void {
+    const drawPetal = (ctx: CanvasRenderingContext2D, angle: number, color: string) => {
       ctx.save();
       ctx.rotate(angle);
       ctx.beginPath();
@@ -116,9 +118,9 @@ export default function AnimationChakra6() {
       ctx.shadowBlur = 25;
       ctx.fill();
       ctx.restore();
-    }
+    };
 
-    function drawChakra(ctx: CanvasRenderingContext2D, chakra: Chakra): void {
+    const drawChakra = (ctx: CanvasRenderingContext2D, chakra: Chakra) => {
       ctx.save();
       ctx.translate(chakra.x(), chakra.y());
       ctx.rotate(chakra.angle);
@@ -138,30 +140,28 @@ export default function AnimationChakra6() {
       ctx.arc(0, 0, coreRadius, 0, 2 * Math.PI);
       ctx.fill();
       ctx.restore();
-    }
+    };
 
-    function getSpinSpeed(): number {
+    const getSpinSpeed = () => {
       chakra.spinPhase += 0.002;
       if (chakra.spinPhase > 1) chakra.spinPhase = 0;
 
-      const phase = chakra.spinPhase < 0.5
-        ? chakra.spinPhase * 2
-        : 2 - chakra.spinPhase * 2;
-
+      const phase = chakra.spinPhase < 0.5 ? chakra.spinPhase * 2 : 2 - chakra.spinPhase * 2;
       const minSpeed = 0.001;
       const maxSpeed = 0.015;
       return minSpeed + (maxSpeed - minSpeed) * phase;
-    }
+    };
 
     let last = performance.now();
 
-    function animate(): void {
-      if (!runningRef.current) return;
+    const animate = () => {
+      if (!runningRef.current || !ctxRef.current) return;
 
       const now = performance.now();
       const delta = now - last;
       last = now;
 
+      const ctx = ctxRef.current;
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, W, H);
 
@@ -182,8 +182,9 @@ export default function AnimationChakra6() {
       }
 
       drawChakra(ctx, chakra);
+
       animationFrameRef.current = requestAnimationFrame(animate);
-    }
+    };
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
