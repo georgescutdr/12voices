@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useEffect, useRef } from "react";
 
 const AnimationConstellations: React.FC = () => {
@@ -8,20 +8,17 @@ const AnimationConstellations: React.FC = () => {
   const isVisibleRef = useRef(true);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
+    const canvas = canvasRef.current!;
+    const container = containerRef.current!;
+    const ctx = canvas.getContext("2d")!;
+    
     const dpr = window.devicePixelRatio || 1;
     let W = 0;
     let H = 0;
     const center = { x: 0, y: 0 };
     let stars: any[] = [];
 
-    function resize() {
+    const resize = () => {
       const bounds = container.getBoundingClientRect();
       W = bounds.width;
       H = bounds.height;
@@ -36,9 +33,9 @@ const AnimationConstellations: React.FC = () => {
       ctx.scale(dpr, dpr);
 
       setupStars();
-    }
+    };
 
-    function setupStars() {
+    const setupStars = () => {
       stars = [];
       const numStars = 70;
       const baseRadius = Math.min(W, H) * 0.35;
@@ -52,7 +49,7 @@ const AnimationConstellations: React.FC = () => {
           brightness: 0.5 + Math.random() * 0.5,
         });
       }
-    }
+    };
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
@@ -60,15 +57,15 @@ const AnimationConstellations: React.FC = () => {
 
     let rotation = 0;
 
-    function drawBackground() {
+    const drawBackground = () => {
       const gradient = ctx.createRadialGradient(center.x, center.y, 0, center.x, center.y, Math.min(W, H) * 0.8);
       gradient.addColorStop(0, "rgba(5,5,25,1)");
       gradient.addColorStop(1, "rgba(0,0,0,1)");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, W, H);
-    }
+    };
 
-    function drawStars() {
+    const drawStars = () => {
       stars.forEach((s) => {
         const twinkle = (Math.sin(s.twinkle + Date.now() * 0.002) + 1) / 2;
         const x = center.x + Math.cos(s.angle + rotation) * s.r;
@@ -79,9 +76,9 @@ const AnimationConstellations: React.FC = () => {
         ctx.fillStyle = `rgba(255,255,255,${0.3 + twinkle * s.brightness})`;
         ctx.fill();
       });
-    }
+    };
 
-    function drawConstellationLines() {
+    const drawConstellationLines = () => {
       ctx.lineWidth = 0.7;
       for (let i = 0; i < stars.length; i++) {
         const s1 = stars[i];
@@ -104,9 +101,9 @@ const AnimationConstellations: React.FC = () => {
           }
         }
       }
-    }
+    };
 
-    function animate() {
+    const animate = () => {
       if (!isVisibleRef.current) {
         animationRef.current = null;
         return;
@@ -119,7 +116,7 @@ const AnimationConstellations: React.FC = () => {
       drawStars();
 
       animationRef.current = requestAnimationFrame(animate);
-    }
+    };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
