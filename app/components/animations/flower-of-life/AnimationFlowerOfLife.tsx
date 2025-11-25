@@ -11,11 +11,8 @@ const AnimationFlowerOfLife: React.FC = () => {
   const brightnessCycleDuration = 8000;
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
+    const canvas = canvasRef.current!;
+    const ctx = canvas.getContext('2d')!;
     const width = 700;
     const height = 700;
 
@@ -64,16 +61,14 @@ const AnimationFlowerOfLife: React.FC = () => {
       else layers[2].push(c);
     });
 
-    // Speed oscillation parameters
     const speedRanges = [
-      { min: 0.001, max: 0.12 }, // inner layer
-      { min: -0.1, max: -0.002 }, // middle layer (CCW)
-      { min: 0.002, max: 0.09 }, // outer layer
+      { min: 0.001, max: 0.12 },
+      { min: -0.1, max: -0.002 },
+      { min: 0.002, max: 0.09 },
     ];
 
-    const speedCycleDurations = [6000, 9000, 7000]; // ms
+    const speedCycleDurations = [6000, 9000, 7000];
 
-    // Utility functions
     function lerp(a: number, b: number, t: number) {
       return a + (b - a) * t;
     }
@@ -91,7 +86,7 @@ const AnimationFlowerOfLife: React.FC = () => {
       const alpha = brightness * 0.9;
       const shadowAlpha = brightness * 0.8;
 
-      const grad = ctx.createRadialGradient(x, y, r * 0.3, x, y, r);
+      const grad = ctx.createRadialGradient(x, y, r * 0.3, x, y, r); // <- non-null ctx
       grad.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
       grad.addColorStop(1, `rgba(255, 255, 255, 0)`);
 
@@ -131,7 +126,6 @@ const AnimationFlowerOfLife: React.FC = () => {
 
       ctx.clearRect(0, 0, width, height);
 
-      // Update speed and angles per layer
       for (let i = 0; i < layers.length; i++) {
         const t = (now % speedCycleDurations[i]) / speedCycleDurations[i];
         const sineT = 0.5 + 0.5 * Math.sin(t * 2 * Math.PI);
@@ -141,7 +135,6 @@ const AnimationFlowerOfLife: React.FC = () => {
         anglesRef.current[i] += speed;
       }
 
-      // Update brightness
       const brightnessT = (now % brightnessCycleDuration) / brightnessCycleDuration;
       const brightness = 0.5 + 0.5 * Math.sin(brightnessT * 2 * Math.PI);
 
