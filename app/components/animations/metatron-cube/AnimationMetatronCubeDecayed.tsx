@@ -4,8 +4,10 @@ import React, { useEffect, useRef } from "react";
 const MetatronCube: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const animationIdRef = useRef<number>();
-  const timeRef = useRef(0);
+
+  const animationIdRef = useRef<number | undefined>(undefined);
+  const timeRef = useRef<number>(0);
+
   const spheresRef = useRef<
     {
       x: number;
@@ -26,7 +28,7 @@ const MetatronCube: React.FC = () => {
   const jitter = 0.3;
   const repulse = 0.05;
 
-  // Helper to get hex points
+  // Helper: hexagon points
   function getHex(radius: number) {
     const pts = [];
     for (let i = 0; i < 6; i++) {
@@ -52,30 +54,34 @@ const MetatronCube: React.FC = () => {
     let centerY = 0;
     let sphereRadius = sphereRadiusBase;
 
-    // Resize canvas to fill container and scale for DPR
+    // Resize function
     function setSize() {
-      const rect = container.getBoundingClientRect();
+      const cont = containerRef.current;
+      const canv = canvasRef.current;
+      const c = ctx;
+      if (!cont || !canv || !c) return;
+
+      const rect = cont.getBoundingClientRect();
 
       W = rect.width;
       H = rect.height;
       centerX = W / 2;
       centerY = H / 2;
 
-      // Adjust sphereRadius based on size - keep it proportional
       sphereRadius = Math.min(sphereRadiusBase, W / 20, H / 20);
 
       // CSS size
-      canvas.style.width = `${W}px`;
-      canvas.style.height = `${H}px`;
+      canv.style.width = `${W}px`;
+      canv.style.height = `${H}px`;
 
-      // Actual pixel size
-      canvas.width = W * dpr;
-      canvas.height = H * dpr;
+      // Real pixel size
+      canv.width = W * dpr;
+      canv.height = H * dpr;
 
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
+      c.setTransform(1, 0, 0, 1, 0, 0);
+      c.scale(dpr, dpr);
 
-      // Initialize spheres positions relative to new sizes
+      // Recompute sphere positions
       const innerR = sphereRadius * 1.8;
       const outerR = sphereRadius * 3.2;
       const basePoints = [{ x: 0, y: 0 }, ...getHex(innerR), ...getHex(outerR)];
@@ -89,20 +95,24 @@ const MetatronCube: React.FC = () => {
         targetY: p.y,
         phase: Math.random() * Math.PI * 2,
       }));
+
       timeRef.current = 0;
     }
-    setSize();
 
+    setSize();
     window.addEventListener("resize", setSize);
 
     function drawSphere(x: number, y: number, glow: number) {
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(255,255,255,${baseAlpha})`;
-      ctx.shadowColor = `rgba(255,255,255,${glow})`;
-      ctx.shadowBlur = 50;
-      ctx.arc(centerX + x, centerY + y, sphereRadius, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.shadowBlur = 0;
+      const c = ctx;
+      if (!c) return;
+
+      c.beginPath();
+      c.fillStyle = `rgba(255,255,255,${baseAlpha})`;
+      c.shadowColor = `rgba(255,255,255,${glow})`;
+      c.shadowBlur = 50;
+      c.arc(centerX + x, centerY + y, sphereRadius, 0, Math.PI * 2);
+      c.fill();
+      c.shadowBlur = 0;
     }
 
     function update() {
@@ -112,9 +122,11 @@ const MetatronCube: React.FC = () => {
         s.vx += dx * 0.0005;
         s.vy += dy * 0.0005;
 
+        // Random movement
         s.vx += (Math.random() - 0.5) * jitter;
         s.vy += (Math.random() - 0.5) * jitter;
 
+        // Repulsion
         spheresRef.current.forEach((o) => {
           if (o === s) return;
           const dx2 = s.x - o.x;
@@ -135,56 +147,68 @@ const MetatronCube: React.FC = () => {
     }
 
     function drawRedSnake(x1: number, y1: number, phase: number) {
+      const c = ctx;
+      if (!c) return;
+
       const dx = x1;
       const dy = y1;
       const len = Math.hypot(dx, dy);
       const steps = Math.floor(len / 10);
 
-      ctx.save();
-      ctx.lineWidth = 4;
-      ctx.shadowColor = "rgba(255, 0, 0, 1)";
-      ctx.strokeStyle = "rgba(255, 0, 0, 1)";
-      ctx.shadowBlur = 50;
-      ctx.beginPath();
+      c.save();
+      c.lineWidth = 4;
+      c.shadowColor = "rgba(255, 0, 0, 1)";
+      c.strokeStyle = "rgba(255, 0, 0, 1)";
+      c.shadowBlur = 50;
+
+      c.beginPath();
       for (let i = 0; i <= steps; i++) {
         const t = i / steps;
         const nx = dx * t + Math.sin(t * Math.PI * 4 + phase) * 15;
         const ny = dy * t + Math.cos(t * Math.PI * 4 + phase) * 15;
         const sx = centerX + nx;
         const sy = centerY + ny;
-        if (i === 0) ctx.moveTo(sx, sy);
-        else ctx.lineTo(sx, sy);
+        if (i === 0) c.moveTo(sx, sy);
+        else c.lineTo(sx, sy);
       }
-      ctx.stroke();
-      ctx.restore();
+
+      c.stroke();
+      c.restore();
     }
 
     function drawWhiteLines(glow: number) {
-      ctx.save();
-      ctx.lineWidth = 3;
-      ctx.shadowColor = `rgba(255,255,255,${glow * 0.8})`;
-      ctx.strokeStyle = `rgba(255,255,255,${glow * 0.5})`;
-      ctx.shadowBlur = 25;
+      const c = ctx;
+      if (!c) return;
+
+      c.save();
+      c.lineWidth = 3;
+      c.shadowColor = `rgba(255,255,255,${glow * 0.8})`;
+      c.strokeStyle = `rgba(255,255,255,${glow * 0.5})`;
+      c.shadowBlur = 25;
 
       for (let i = 0; i < spheresRef.current.length; i++) {
         for (let j = i + 1; j < spheresRef.current.length; j++) {
           const a = spheresRef.current[i];
           const b = spheresRef.current[j];
-          ctx.beginPath();
-          ctx.moveTo(centerX + a.x, centerY + a.y);
-          ctx.lineTo(centerX + b.x, centerY + b.y);
-          ctx.stroke();
+          c.beginPath();
+          c.moveTo(centerX + a.x, centerY + a.y);
+          c.lineTo(centerX + b.x, centerY + b.y);
+          c.stroke();
         }
       }
-      ctx.restore();
+
+      c.restore();
     }
 
     function draw() {
-      ctx.clearRect(0, 0, W, H);
+      const c = ctx;
+      if (!c) return;
+
+      c.clearRect(0, 0, W, H);
+
       const glow = 0.2 + 0.8 * Math.abs(Math.sin(timeRef.current * glowSpeed));
 
       update();
-
       drawWhiteLines(glow);
 
       spheresRef.current.slice(1).forEach((s) => {
@@ -197,13 +221,11 @@ const MetatronCube: React.FC = () => {
       animationIdRef.current = requestAnimationFrame(draw);
     }
 
-    // Intersection Observer to pause/resume animation when out of viewport
+    // Pause animation when off-screen
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          if (!animationIdRef.current) {
-            draw();
-          }
+          if (!animationIdRef.current) draw();
         } else {
           if (animationIdRef.current) {
             cancelAnimationFrame(animationIdRef.current);
@@ -216,7 +238,6 @@ const MetatronCube: React.FC = () => {
 
     observer.observe(canvas);
 
-    // Start animation initially
     draw();
 
     return () => {
@@ -232,11 +253,7 @@ const MetatronCube: React.FC = () => {
       className="w-full h-screen flex justify-center items-center bg-[#111]"
       style={{ position: "relative" }}
     >
-      <canvas
-        ref={canvasRef}
-        className="block bg-transparent"
-        // Width and height controlled by resize logic
-      />
+      <canvas ref={canvasRef} className="block bg-transparent" />
     </div>
   );
 };

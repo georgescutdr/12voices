@@ -41,7 +41,7 @@ const AnimationMerkaba: React.FC = () => {
     resize();
     window.addEventListener('resize', resize);
 
-    const rotateY = (point: any, angle: number) => {
+    const rotateY = (point: { x: number; y: number; z: number }, angle: number) => {
       const cos = Math.cos(angle);
       const sin = Math.sin(angle);
       return {
@@ -52,7 +52,7 @@ const AnimationMerkaba: React.FC = () => {
     };
 
     const focalLength = 400;
-    const project = (point: any) => {
+    const project = (point: { x: number; y: number; z: number }) => {
       const scale = focalLength / (focalLength + point.z);
       return {
         x: centerX + point.x * scale,
@@ -78,7 +78,7 @@ const AnimationMerkaba: React.FC = () => {
 
     const lightDir = { x: 0, y: 1, z: 0 };
 
-    const faceLight = (pts: any[]) => {
+    const faceLight = (pts: { x: number; y: number; z: number }[]) => {
       const U = {
         x: pts[1].x - pts[0].x,
         y: pts[1].y - pts[0].y,
@@ -96,9 +96,7 @@ const AnimationMerkaba: React.FC = () => {
       if (length === 0) return 0;
       const normal = { x: Nx / length, y: Ny / length, z: Nz / length };
       const dot =
-        normal.x * lightDir.x +
-        normal.y * lightDir.y +
-        normal.z * lightDir.z;
+        normal.x * lightDir.x + normal.y * lightDir.y + normal.z * lightDir.z;
       return Math.max(0, dot);
     };
 
@@ -117,7 +115,7 @@ const AnimationMerkaba: React.FC = () => {
     };
 
     const drawTetrahedron = (
-      vertices3D: any[],
+      vertices3D: { x: number; y: number; z: number }[],
       baseColor: string,
       glowColor: string,
       globalAlpha = 1
@@ -127,48 +125,47 @@ const AnimationMerkaba: React.FC = () => {
         const zA =
           (vertices3D[a[0]].z +
             vertices3D[a[1]].z +
-            vertices3D[a[2]].z) / 3;
+            vertices3D[a[2]].z) /
+          3;
         const zB =
           (vertices3D[b[0]].z +
             vertices3D[b[1]].z +
-            vertices3D[b[2]].z) / 3;
+            vertices3D[b[2]].z) /
+          3;
         return zB - zA;
       });
 
-      ctx.globalAlpha = globalAlpha;
+      ctx!.globalAlpha = globalAlpha;
       sortedFaces.forEach(face => {
         const pts3D = face.map(i => vertices3D[i]);
         const lightIntensity = faceLight(pts3D);
-        ctx.fillStyle = shadeColor(
-          baseColor,
-          lightIntensity * 0.8 + 0.2
-        );
-        ctx.shadowColor = glowColor;
-        ctx.shadowBlur = 15 * lightIntensity;
-        ctx.beginPath();
+        ctx!.fillStyle = shadeColor(baseColor, lightIntensity * 0.8 + 0.2);
+        ctx!.shadowColor = glowColor;
+        ctx!.shadowBlur = 15 * lightIntensity;
+        ctx!.beginPath();
         const pts2D = face.map(i => projected[i]);
-        ctx.moveTo(pts2D[0].x, pts2D[0].y);
-        ctx.lineTo(pts2D[1].x, pts2D[1].y);
-        ctx.lineTo(pts2D[2].x, pts2D[2].y);
-        ctx.closePath();
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        ctx!.moveTo(pts2D[0].x, pts2D[0].y);
+        ctx!.lineTo(pts2D[1].x, pts2D[1].y);
+        ctx!.lineTo(pts2D[2].x, pts2D[2].y);
+        ctx!.closePath();
+        ctx!.fill();
+        ctx!.shadowBlur = 0;
       });
 
-      ctx.strokeStyle = glowColor;
-      ctx.lineWidth = 2;
+      ctx!.strokeStyle = glowColor;
+      ctx!.lineWidth = 2;
       faces.forEach(face => {
-        ctx.beginPath();
+        ctx!.beginPath();
         const p0 = projected[face[0]];
-        ctx.moveTo(p0.x, p0.y);
+        ctx!.moveTo(p0.x, p0.y);
         for (let i = 1; i < 3; i++) {
           const p = projected[face[i]];
-          ctx.lineTo(p.x, p.y);
+          ctx!.lineTo(p.x, p.y);
         }
-        ctx.closePath();
-        ctx.stroke();
+        ctx!.closePath();
+        ctx!.stroke();
       });
-      ctx.globalAlpha = 1;
+      ctx!.globalAlpha = 1;
     };
 
     // Speed controls
@@ -182,7 +179,7 @@ const AnimationMerkaba: React.FC = () => {
 
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-    const getCyclePhaseAndT = (elapsed: number) => {
+    const getCyclePhaseAndT = (elapsed: number): [number, number] => {
       const total = slowDuration + fastDuration + 2 * transitionDuration;
       const mod = elapsed % total;
       if (mod < slowDuration) return [0, 0];
@@ -190,11 +187,7 @@ const AnimationMerkaba: React.FC = () => {
         return [1, (mod - slowDuration) / transitionDuration];
       if (mod < slowDuration + transitionDuration + fastDuration)
         return [2, 0];
-      return [
-        3,
-        (mod - slowDuration - transitionDuration - fastDuration) /
-          transitionDuration,
-      ];
+      return [3, (mod - slowDuration - transitionDuration - fastDuration) / transitionDuration];
     };
 
     let angleWhite = 0;
@@ -211,7 +204,9 @@ const AnimationMerkaba: React.FC = () => {
 
       const [phase, t] = getCyclePhaseAndT(elapsed);
 
-      let speedWhite, speedBlack;
+      let speedWhite = 0;
+      let speedBlack = 0;
+
       switch (phase) {
         case 0:
           speedWhite = slowSpeedWhite;
@@ -234,22 +229,13 @@ const AnimationMerkaba: React.FC = () => {
       angleWhite += speedWhite;
       angleBlack += speedBlack;
 
-      ctx.clearRect(0, 0, W, H);
+      ctx!.clearRect(0, 0, W, H);
 
       const rotatedWhite = whiteTetra.map(v => rotateY(v, angleWhite));
       const rotatedBlack = blackTetra.map(v => rotateY(v, angleBlack));
 
-      drawTetrahedron(
-        rotatedBlack,
-        'rgba(20,20,20,1)',
-        'rgba(80,80,80,0.8)'
-      );
-      drawTetrahedron(
-        rotatedWhite,
-        'rgba(255,255,255,1)',
-        'rgba(200,255,255,0.9)',
-        0.5
-      );
+      drawTetrahedron(rotatedBlack, 'rgba(20,20,20,1)', 'rgba(80,80,80,0.8)');
+      drawTetrahedron(rotatedWhite, 'rgba(255,255,255,1)', 'rgba(200,255,255,0.9)', 0.5);
 
       animationId = requestAnimationFrame(animate);
     };
@@ -287,7 +273,7 @@ const AnimationMerkaba: React.FC = () => {
         margin: 0,
         padding: 0,
         position: 'relative',
-        backgroundColor: '#000000',
+        backgroundColor: '#000',
       }}
     >
       <canvas

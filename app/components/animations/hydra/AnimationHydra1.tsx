@@ -59,7 +59,7 @@ const AnimationHydra1: React.FC = () => {
       });
     }
 
-    function drawNeck(head: any, time: number) {
+    const drawNeck = (head: any, time: number) => {
       const points = [];
       const angle = head.baseAngle;
       const dx = Math.cos(angle);
@@ -74,17 +74,18 @@ const AnimationHydra1: React.FC = () => {
         points.push({ x: px, y: py });
       }
 
-      ctx.beginPath();
-      ctx.strokeStyle = '#444';
-      ctx.lineWidth = 3;
-      ctx.moveTo(points[0].x, points[0].y);
+      // NON-NULL assertion fixes TypeScript error
+      ctx!.beginPath();
+      ctx!.strokeStyle = '#444';
+      ctx!.lineWidth = 3;
+      ctx!.moveTo(points[0].x, points[0].y);
       for (let i = 1; i < points.length; i++) {
-        ctx.lineTo(points[i].x, points[i].y);
+        ctx!.lineTo(points[i].x, points[i].y);
       }
-      ctx.stroke();
+      ctx!.stroke();
 
       return points[points.length - 1];
-    }
+    };
 
     const animate = () => {
       if (!isVisibleRef.current) {
@@ -92,21 +93,23 @@ const AnimationHydra1: React.FC = () => {
         return;
       }
 
-      ctx.clearRect(0, 0, width, height);
+      ctx!.clearRect(0, 0, width, height);
 
-      ctx.beginPath();
-      ctx.fillStyle = '#111';
-      ctx.arc(center.x(), center.y(), bodyRadius, 0, Math.PI * 2);
-      ctx.fill();
+      // Draw body
+      ctx!.beginPath();
+      ctx!.fillStyle = '#111';
+      ctx!.arc(center.x(), center.y(), bodyRadius, 0, Math.PI * 2);
+      ctx!.fill();
 
       const time = Date.now() / 1000;
 
+      // Draw heads
       headsRef.current.forEach((head) => {
         const headPos = drawNeck(head, time);
-        ctx.beginPath();
-        ctx.fillStyle = '#5500ff';
-        ctx.arc(headPos.x, headPos.y, headRadius, 0, Math.PI * 2);
-        ctx.fill();
+        ctx!.beginPath();
+        ctx!.fillStyle = '#5500ff';
+        ctx!.arc(headPos.x, headPos.y, headRadius, 0, Math.PI * 2);
+        ctx!.fill();
       });
 
       animationRef.current = requestAnimationFrame(animate);
@@ -142,11 +145,7 @@ const AnimationHydra1: React.FC = () => {
     >
       <canvas
         ref={canvasRef}
-        style={{
-          display: 'block',
-          width: '100%',
-          height: '100%',
-        }}
+        style={{ display: 'block', width: '100%', height: '100%' }}
       />
     </div>
   );
