@@ -11,11 +11,8 @@ const Chakra3Page: React.FC = () => {
       {/* === CHAKRA NAVIGATION BAR === */}
       <ChakraBar />
 
-      {/* Divider */}
-      <hr className="border-t border-gray-300 h-px w-full" />
-
       {/* === SECTION 1: Chakra Overview === */}
-      <div className="flex flex-col md:flex-row w-full bg-white p-6 md:p-12 gap-8 md:gap-0">
+      <div className="flex flex-col md:flex-row h-auto md:h-screen w-full">
         {/* Text Section */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-start md:pr-12">
           <h2 className="text-2xl md:text-3xl font-semibold text-black mb-4 text-center md:text-left">
@@ -41,11 +38,8 @@ const Chakra3Page: React.FC = () => {
         </div>
       </div>
 
-      {/* Divider */}
-      <hr className="border-t border-gray-300 h-px w-full " />
-
       {/* === SECTION 2: Chakra States === */}
-      <div className="w-full bg-gray-100 flex flex-col justify-center p-6 md:p-12">
+      <div className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="text-gray-700 text-base leading-relaxed max-w-3xl mx-auto text-justify">
           
           {/* Normal State */}

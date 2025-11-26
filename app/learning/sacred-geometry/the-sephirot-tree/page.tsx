@@ -9,7 +9,7 @@ const TheSephirotTreePage: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
 
       {/* Section 1: Text + Animation */}
-      <div className="flex flex-col md:flex-row h-auto w-full bg-white p-6 md:p-12 gap-8 md:gap-0">
+      <div className="flex flex-col md:flex-row h-auto md:h-screen w-full">
         {/* Left panel: Title and bullets */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-start">
           <h2 className="text-2xl md:text-3xl font-semibold text-black mb-4 text-center md:text-left">
@@ -38,12 +38,9 @@ const TheSephirotTreePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Divider */}
-      <div className="w-full border-t border-gray-300"></div>
-
       {/* Section 2: Description */}
-      <div className="w-full h-auto bg-gray-50 flex items-center justify-center p-6 md:p-12">
-        <div className="max-w-3xl text-gray-800 text-sm md:text-base leading-relaxed text-center space-y-6">
+      <div className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
+        <div className="max-w-3xl text-gray-800 text-sm md:text-base leading-relaxed text-justify space-y-6">
           <p>
             Keeping the Sephirots clean and spinning means refraining from filling them with dark energy or trying to impose our will on the surroundings. 
             Each action, thought, or emotion contributes to the tree’s activation or stagnation. By cultivating humility, compassion, and presence, 
@@ -68,7 +65,7 @@ const TheSephirotTreePage: React.FC = () => {
       </div>
 
       {/* Divider */}
-      <div className="w-full border-t border-gray-300 my-8"></div>
+      <div className="w-full border-t border-gray-300"></div>
 
       {/* Section 3: Interactive Selector */}
       <div className="w-full h-auto bg-white flex items-center justify-center p-6 md:p-12">

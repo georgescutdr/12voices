@@ -8,7 +8,7 @@ const TherapyPage: React.FC = () => {
     <div className="bg-white text-black relative overflow-hidden">
 
       {/* HERO SECTION */}
-      <section className="relative w-full min-h-screen flex flex-col lg:flex-row items-center justify-center px-12 lg:px-32 py-24">
+      <section className="relative text-justify w-full min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 sm:px-8 lg:px-32 py-24">
 
         {/* Left - Text */}
         <div className="lg:w-1/2 space-y-8 relative z-10">
@@ -43,11 +43,10 @@ const TherapyPage: React.FC = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-50 to-white -z-10"></div>
       </section>
 
-      {/* DIVIDER */}
-      <div className="w-full border-t border-black/10"></div>
+ 
 
       {/* DETAILS SECTION */}
-      <section className="w-full px-12 lg:px-32 py-24 relative bg-gray-50">
+      <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-4xl mx-auto space-y-12 relative z-10">
 
           <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">

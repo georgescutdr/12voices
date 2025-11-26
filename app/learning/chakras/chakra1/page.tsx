@@ -38,11 +38,8 @@ const Chakra1Page: React.FC = () => {
         </div>
       </div>
 
-      {/* Divider */}
-      <hr className="border-t border-gray-300 h-px w-full " />
-
       {/* === SECTION 2: Chakra States === */}
-      <div className="w-full min-h-screen bg-gray-50 flex flex-col justify-center p-6 md:p-12">
+      <div className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="text-gray-700 text-base leading-relaxed max-w-3xl mx-auto text-justify">
 
           {/* Normal State */}

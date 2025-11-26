@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="title" content={metadata.title} />
         <title>{metadata.title}</title>
       </head>
-      <body className="font-sans relative flex flex-col min-h-screen bg-black text-white">
+      <body className="font-sans relative flex flex-col min-h-screen bg-black text-white drop-shadow-sm">
         {/* Preloader Spinner */}
         {loading && (
           <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
 
         {/* Main content */}
-        <main className="flex-grow p-6">{children}</main>
+        <main className="flex-grow p-0 m-0 sm:p-6">{children}</main>
 
         {/* Footer */}
         <Footer />

@@ -35,7 +35,7 @@ const TheTantiensPage: React.FC = () => {
       </div>
 
       {/* ======================= SECOND SECTION — Detailed Explanation ======================= */}
-      <div className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 flex justify-center">
+      <div className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-4xl text-gray-800 text-base lg:text-lg leading-relaxed space-y-8">
 
           <p>

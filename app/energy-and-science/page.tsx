@@ -4,7 +4,7 @@ import React from "react";
 
 export default function EnergyAndSciencePage() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 px-6 lg:px-24 py-12">
+    <div className="min-h-screen bg-white text-justify text-gray-900 px-6 sm:px-8 lg:px-32 py-24">
       <div className="max-w-4xl mx-auto space-y-12">
 
         {/* HEADER */}

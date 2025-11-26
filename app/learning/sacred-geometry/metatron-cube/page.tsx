@@ -33,7 +33,7 @@ const MetatronCubePage: React.FC = () => {
       </div>
 
       {/* ======================= SECTION 2: Platonic Solids Explained ======================= */}
-      <div className="w-full bg-white py-16 px-8 lg:px-16 border-b border-gray-200">
+      <div className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-4xl mx-auto text-gray-800 space-y-10">
 
           <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-8 text-center">
@@ -95,7 +95,7 @@ const MetatronCubePage: React.FC = () => {
       </div>
 
       {/* ======================= SECTION 3: Decayed Metatron's Cube ======================= */}
-      <div className="flex flex-col md:flex-row w-full bg-gray-100 border-b border-gray-200">
+      <div className="flex flex-col md:flex-row w-full bg-gray-100 border-b border-gray-200 shadow-inner">
         {/* Left column - Text */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-start p-8 lg:p-16 space-y-6 z-10">
           <h2 className="text-3xl md:text-4xl font-semibold text-black">Metatron's Cube — Decayed</h2>

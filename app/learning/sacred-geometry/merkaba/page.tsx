@@ -35,7 +35,7 @@ const MerkabaPage: React.FC = () => {
       </section>
 
       {/* ======================= SECTION 2 — In-Depth Description ======================= */}
-      <section className="w-full bg-gray-50 py-20 px-8 lg:px-16 border-b border-gray-200">
+      <section className="ww-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-4xl mx-auto text-gray-800 text-base lg:text-lg leading-relaxed space-y-8">
 
           <h2 className="text-3xl lg:text-4xl font-semibold text-black text-center mb-6">
@@ -72,7 +72,7 @@ const MerkabaPage: React.FC = () => {
       </section>
 
       {/* ======================= SECTION 3 — Practical Tips ======================= */}
-      <section className="w-full py-20 px-8 lg:px-16">
+      <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-4xl mx-auto text-gray-800 text-base lg:text-lg leading-relaxed space-y-8">
 
           <h2 className="text-3xl lg:text-4xl font-semibold text-black text-center mb-6">
@@ -122,7 +122,7 @@ const MerkabaPage: React.FC = () => {
       </section>
 
       {/* ======================= SECTION 4 — Closing Remarks ======================= */}
-      <section className="w-full bg-gray-50 py-20 px-8 lg:px-16">
+      <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-4xl mx-auto text-gray-800 text-lg leading-relaxed text-center space-y-6">
           <p>
             The Merkaba is a timeless spiritual tool that empowers practitioners to align their energy systems,

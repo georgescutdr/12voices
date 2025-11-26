@@ -8,14 +8,14 @@ const ConstellationsPage: React.FC = () => {
     <div className="bg-white text-black relative overflow-hidden min-h-screen">
 
       {/* HERO SECTION */}
-      <section className="relative w-full flex flex-col lg:flex-row items-center justify-center min-h-screen">
+      <section className="flex flex-col md:flex-row h-auto md:h-screen w-full">
         
         {/* LEFT SIDE — INTRO TEXT */}
-        <div className="lg:w-1/2 w-full space-y-10 relative z-10 px-12 lg:px-32 py-24 pr-12 lg:pr-24">
+        <div className="lg:w-1/2 w-full space-y-10 relative z-10 px-12 lg:px-32 py-24 pr-12 lg:pr-24 text-justify">
           <h1 className="text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-md">
             The Constellations & The Soul of the Cosmos
           </h1>
-
+ 
           <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
             From the dawn of time, humanity looked upward — not just to navigate the seas,
             but to navigate the soul. The constellations are not random clusters of stars;
@@ -26,7 +26,7 @@ const ConstellationsPage: React.FC = () => {
         </div>
 
         {/* RIGHT SIDE — CONSTELLATIONS ANIMATION */}
-        <div className="lg:w-1/2 w-full h-[100vh] mt-12 lg:mt-0 relative bg-black z-0 flex justify-center items-center">
+        <div className="w-full md:w-1/2 bg-black relative flex justify-center items-center p-4">
           <AnimationConstellations />
         </div>
 
@@ -34,11 +34,8 @@ const ConstellationsPage: React.FC = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white to-gray-100 -z-10"></div>
       </section>
 
-      {/* DIVIDER */}
-      <div className="w-full border-t border-black/10"></div>
-
       {/* CONSTELLATION DETAILS SECTION */}
-      <section className="w-full px-12 lg:px-32 py-24 relative">
+      <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex text-justify">
         <div className="max-w-5xl mx-auto space-y-12 relative z-10">
 
           <h2 className="text-4xl lg:text-5xl font-bold tracking-tight drop-shadow-md">
@@ -63,7 +60,7 @@ const ConstellationsPage: React.FC = () => {
       </section>
 
       {/* COSMIC SUMMARY SECTION */}
-      <section className="w-full px-12 lg:px-32 py-24 relative">
+      <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-5xl mx-auto space-y-8 relative z-10">
           <h2 className="text-4xl lg:text-5xl font-bold tracking-tight drop-shadow-md">
             The Sky as a Mirror of the Inner Universe

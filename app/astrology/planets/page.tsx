@@ -16,7 +16,7 @@ const PlanetsPage: React.FC = () => {
             The Planets & Their Spiritual Essence
           </h1>
 
-          <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
+          <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm text-justify ">
             In ancient cosmology, the planets were not mere spheres of matter —
             they were living intelligences, divine archetypes shaping consciousness,
             time, and destiny. Each planet radiates a unique frequency that mirrors
@@ -32,11 +32,8 @@ const PlanetsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* DIVIDER */}
-      <div className="w-full border-t border-black/10"></div>
-
       {/* PLANETARY DETAILS SECTION */}
-      <section className="w-full px-12 lg:px-32 py-24 relative">
+      <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-5xl mx-auto space-y-12 relative z-10">
           <h2 className="text-4xl lg:text-5xl font-bold tracking-tight drop-shadow-md">
             The Spiritual Archetypes of the Planets
@@ -81,7 +78,7 @@ const PlanetsPage: React.FC = () => {
       </section>
 
       {/* SPIRITUAL SUMMARY SECTION */}
-      <section className="w-full px-12 lg:px-32 py-24 relative">
+      <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex text-justify">
         <div className="max-w-5xl mx-auto space-y-8 relative z-10">
           <h2 className="text-4xl lg:text-5xl font-bold tracking-tight drop-shadow-md">
             The Inner Solar System of the Soul
