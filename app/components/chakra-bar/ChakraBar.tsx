@@ -30,7 +30,7 @@ const ChakraBar: React.FC = () => {
           <button
             key={chakra.id}
             onClick={() => handleNavigate(chakra.id)}
-            className={`px-5 py-2 cursor-pointer rounded-full text-sm md:text-base font-semibold tracking-wide uppercase transition-all duration-300
+            className={`px-3 py-1 md:px-5 md:py-2 cursor-pointer rounded-full text-xs sm:text-sm md:text-base font-semibold tracking-wide uppercase transition-all duration-300
               ${
                 isActive
                   ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.6)] scale-105"

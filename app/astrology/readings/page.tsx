@@ -8,7 +8,7 @@ const ReadingsPage: React.FC = () => {
     <div className="bg-white text-black min-h-screen relative overflow-hidden font-sans">
 
       {/* HERO SECTION */}
-      <section className="w-full flex flex-col lg:flex-row items-start justify-between px-12 lg:px-32 py-24">
+      <section className="w-full flex flex-col lg:flex-row items-start justify-between px-12 lg:px-32 py-24max-w-3xl">
         
         {/* LEFT SIDE — TITLE & INTRO */}
         <div className="lg:w-1/2 space-y-8">
@@ -43,31 +43,38 @@ const ReadingsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* DIVIDER */}
-      <div className="w-full border-t border-black/20"></div>
-
       {/* INFO SECTION */}
-      <section className="w-full px-12 lg:px-32 py-24 space-y-12">
-        <h2 className="text-4xl lg:text-5xl font-bold tracking-tight">
+      <section className="w-full bg-gray-50 border-gray-200 px-8 mx-auto px-6 lg:px-0 py-12 shadow-inner">
+        {/* Title */}
+        <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-10 text-center lg:text-left drop-shadow-sm">
           How Our Astrology Readings Work
         </h2>
 
-        <p className="text-gray-800 text-lg lg:text-xl leading-relaxed">
-          Our readings are personalized based on your birth chart and current planetary positions.
-          Each session explores your strengths, challenges, and opportunities, giving you
-          guidance for conscious decision-making.
-        </p>
+        {/* Content Sections */}
+        <div className="space-y-8 text-gray-800 text-lg lg:text-xl leading-relaxed text-justify drop-shadow-sm">
 
-        <p className="text-gray-800 text-lg lg:text-xl leading-relaxed">
-          With a focus on clarity and empowerment, we help you understand the cosmic patterns
-          that influence your life, relationships, and spiritual growth.
-        </p>
+          <p>
+            Our readings are fully personalized based on your birth chart and the current
+            planetary positions. Each session explores your strengths, challenges, and
+            opportunities, giving you clear guidance for conscious decision-making and
+            aligned action.
+          </p>
 
-        <p className="text-gray-800 text-lg lg:text-xl leading-relaxed">
-          Every reading is conducted with professionalism, confidentiality, and insight.
-          Align your actions with the stars and awaken to your potential.
-        </p>
+          <p>
+            With a focus on clarity and empowerment, we help you understand the cosmic
+            patterns that shape your life, relationships, purpose, and spiritual growth.
+            You’ll receive insights that are both practical and deeply intuitive.
+          </p>
+
+          <p>
+            Every reading is conducted with professionalism, confidentiality, and insight.
+            Align your actions with the stars, step into your potential, and move forward
+            with confidence.
+          </p>
+
+        </div>
       </section>
+
 
       {/* LIGHT BACKGROUND LAYER */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-100 to-white"></div>

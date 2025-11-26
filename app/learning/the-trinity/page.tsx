@@ -12,7 +12,7 @@ const TheTrinityPage: React.FC = () => {
         
         {/* LEFT COLUMN — Text */}
         <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 leading-tight">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-left text-black mb-6 leading-tight">
             The Trinity
           </h2>
 
@@ -46,7 +46,8 @@ const TheTrinityPage: React.FC = () => {
         </div>
 
         {/* RIGHT COLUMN — Animation */}
-        <div className="w-full lg:w-1/2 bg-black relative flex justify-center items-center p-6 shadow-inner">
+        <div className="w-full lg:w-1/2 bg-black relative flex justify-center items-center p-6 shadow-inner
+                min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[400px]">
           <AnimationTrinity />
         </div>
       </div>
@@ -70,11 +71,11 @@ const TheTrinityPage: React.FC = () => {
               <li>Atoms contain spinning particles held within spherical probability clouds.</li>
 
               <li>Energy fields around living beings—auras—naturally form spherical layers.</li>
-          </ul>
+            </ul>
 
             The sphere is not only a physical structure but also a metaphysical symbol of wholeness, unity, balance, and containment.
         
-          <div className="border-l-4 border-gray-700 pl-4 bg-white/60 p-4 shadow-sm rounded">
+          <div className="w-full sm:w-auto border-l-4 border-gray-700 pl-4 bg-white/60 p-4 shadow-sm rounded mt-8">
             <h3 className="text-xl font-semibold text-black mb-2">The Father — Totality & Inward Flow</h3>
          
               The Father aspect represents the entire sphere as one unified being. It is the container, the boundary, the full potential of a system.

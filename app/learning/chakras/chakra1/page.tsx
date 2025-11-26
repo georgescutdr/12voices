@@ -6,15 +6,15 @@ import ChakraBar from '../../../components/chakra-bar/ChakraBar';
 
 const Chakra1Page: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
       {/* === CHAKRA NAVIGATION BAR === */}
       <ChakraBar />
 
       {/* === SECTION 1: Chakra Overview === */}
-      <div className="flex flex-col md:flex-row h-auto md:h-screen w-full">
+      <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Text Section */}
-        <div className="w-full md:w-1/2 bg-white flex flex-col justify-center items-start p-6 md:p-8">
-          <h2 className="text-2xl md:text-3xl font-semibold text-black mb-4">
+        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-black text-left mb-6 leading-tight">
             Chakra 1: Root Chakra
           </h2>
           <p className="text-gray-700 text-base mb-4">

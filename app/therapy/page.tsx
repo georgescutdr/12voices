@@ -5,16 +5,16 @@ import AnimationTherapy from '../components/animations/therapy/AnimationTherapy'
 
 const TherapyPage: React.FC = () => {
   return (
-    <div className="bg-white text-black relative overflow-hidden">
+    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
 
       {/* HERO SECTION */}
-      <section className="relative text-justify w-full min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 sm:px-8 lg:px-32 py-24">
+      <section className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
 
         {/* Left - Text */}
-        <div className="lg:w-1/2 space-y-8 relative z-10">
-          <h1 className="text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-md">
+        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 leading-tight">
             Energy Therapy
-          </h1>
+          </h2>
 
           <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
             Remote energy therapy blends modern wellness insights with subtle energetic
@@ -23,7 +23,7 @@ const TherapyPage: React.FC = () => {
             supporting vitality and restorative sleep.
           </p>
 
-          <ul className="list-disc list-inside text-gray-800 space-y-2 text-md lg:text-lg drop-shadow-sm">
+          <ul className="list-disc list-inside text-gray-800 text-lg lg:text-xl space-y-2 drop-shadow-sm mt-10">
             <li>Promotes deep relaxation and restorative sleep</li>
             <li>Regulates and energizes the nervous system</li>
             <li>Supports balanced organ function</li>
@@ -56,7 +56,7 @@ const TherapyPage: React.FC = () => {
             to restore your system naturally.
           </p>
 
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight drop-shadow-md">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 leading-tight">
             How It Works
           </h2>
 
