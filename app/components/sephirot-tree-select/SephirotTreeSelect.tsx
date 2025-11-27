@@ -224,11 +224,11 @@ export default function SephirotTreePage() {
       </div>
 
       {/* Small screens: list all Sephirots with content */}
-      <div className="w-full lg:hidden flex flex-col gap-6">
+      <div className="w-full lg:hidden flex flex-col gap-4">
         {sephirotsList.map((s) => {
           const Component = allContent[s.id];
           return (
-            <div key={s.id} className="bg-white shadow-lg rounded-xl p-4">
+            <div key={s.id} className="w-screen max-w-full bg-white shadow-lg rounded-xl p-4">
               <Suspense fallback={<p>Loading...</p>}>
                 {Component ? <Component /> : <p className="text-gray-500">Content not available.</p>}
               </Suspense>

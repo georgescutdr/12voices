@@ -6,18 +6,18 @@ import AnimationMetatronCubeDecayed from '../../../components/animations/metatro
 
 const MetatronCubePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
 
       {/* ======================= SECTION 1: Metatron's Cube ======================= */}
-      <div className="flex flex-col md:flex-row w-full bg-gray-50 border-b border-gray-200 shadow-sm">
+      <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Left column - Text */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-start p-8 lg:p-16 space-y-6">
-          <h2 className="text-3xl md:text-4xl font-semibold text-black">Metatron's Cube</h2>
+        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">Metatron's Cube</h2>
           <p className="text-gray-700 text-base md:text-lg leading-relaxed">
             Metatron's Cube is a sacred geometric figure derived from the Flower of Life. It acts as a blueprint of creation, 
             connecting the centers of the spheres to form complex, multidimensional patterns that hold universal energy.
           </p>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 md:text-base">
+          <ul className="list-disc md:text-lg list-inside text-gray-700 mt-10 space-y-2 md:text-base">
             <li>It arises from the Flower of Life by connecting the centers of 13 spheres with straight lines.</li>
             <li>Within it, the five Platonic solids naturally emerge: tetrahedron, cube, octahedron, dodecahedron, icosahedron.</li>
             <li>Spinning these solids generates the energy of the classical elements: fire, earth, air, water, and ether.</li>
@@ -99,11 +99,11 @@ const MetatronCubePage: React.FC = () => {
         {/* Left column - Text */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-start p-8 lg:p-16 space-y-6 z-10">
           <h2 className="text-3xl md:text-4xl font-semibold text-black">Metatron's Cube — Decayed</h2>
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-gray-700 text-base md:text-lg leading-relaxed">
             When the Metatron's Cube is subjected to negative or chaotic energies, its perfect symmetry collapses. 
             The once-ordered geometry degrades into irregular forms, creating energy leakage, chaos, and imbalance.
           </p>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 md:text-base">
+          <ul className="list-disc md:text-lg list-inside text-gray-700 mt-10 space-y-2 md:text-base">
             <li>Spheres warp and lines fade, causing disharmony within the geometric flow.</li>
             <li>The Platonic solids no longer spin coherently, disrupting the energy of the five elements.</li>
             <li>Toxic vibrations emerge, creating stagnation and energetic blockages.</li>

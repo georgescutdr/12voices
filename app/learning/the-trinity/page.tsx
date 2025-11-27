@@ -5,11 +5,10 @@ import AnimationTrinity from '../../components/animations/trinity/AnimationTrini
 
 const TheTrinityPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
+    <div className=" bg-white flex flex-col text-justify drop-shadow-sm">
 
       {/* ======================= FIRST SECTION — Trinity Overview ======================= */}
-      <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
-        
+      <div className="flex flex-col lg:flex-row w-full lg:min-h-screen border-b border-gray-200 shadow-sm">
         {/* LEFT COLUMN — Text */}
         <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
           <h2 className="text-4xl lg:text-5xl font-semibold text-left text-black mb-6 leading-tight">
@@ -46,8 +45,7 @@ const TheTrinityPage: React.FC = () => {
         </div>
 
         {/* RIGHT COLUMN — Animation */}
-        <div className="w-full lg:w-1/2 bg-black relative flex justify-center items-center p-6 shadow-inner
-                min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[400px]">
+        <div className="w-full md:w-1/2 bg-black relative flex justify-center md:items-center p-2 sm:p-4 h-auto md:h-full">
           <AnimationTrinity />
         </div>
       </div>

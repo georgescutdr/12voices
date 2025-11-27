@@ -33,9 +33,10 @@ const Chakra1Page: React.FC = () => {
         </div>
 
         {/* Animation Section */}
-        <div className="w-full md:w-1/2 bg-black relative flex justify-center items-center p-4">
+        <div className="w-full md:w-1/2 bg-black relative flex justify-center md:items-center p-2 sm:p-4">
           <AnimationChakra1 />
         </div>
+
       </div>
 
       {/* === SECTION 2: Chakra States === */}

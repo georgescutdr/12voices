@@ -6,20 +6,20 @@ import SephirotTreeSelect from '../../../components/sephirot-tree-select/Sephiro
 
 const TheSephirotTreePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
 
       {/* Section 1: Text + Animation */}
-      <div className="flex flex-col md:flex-row h-auto md:h-screen w-full">
+      <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Left panel: Title and bullets */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-start">
-          <h2 className="text-2xl md:text-3xl font-semibold text-black mb-4 text-center md:text-left">
+        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
             The Sephirot Tree
           </h2>
-          <p className="text-gray-700 text-base mb-4 text-center md:text-left">
+          <p className="text-gray-700 text-base mb-4 text-justify md:text-left">
             The Sephirot Tree is an energetic blueprint that connects the layers of the universe and mirrors the human energy system. 
             It guides the flow of energy through specific points, harmonizing physical, emotional, and spiritual levels.
           </p>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 text-sm md:text-base">
+          <ul className="list-disc list-inside text-gray-700 text-justify space-y-2 text-sm md:text-base">
             <li>Its nodes, or Sephirots, are connected by different types of energies: magnetic, fluidic, geometric, informational, and spiritual.</li>
             <li>The tree spans from heavy magnetic energies (representing the lower planes) to light, subtle energies of the higher planes.</li>
             <li>Within the human body, the Sephirot Tree aligns with the central channel, connecting feet, the three Tantiens, and upper chakras.</li>

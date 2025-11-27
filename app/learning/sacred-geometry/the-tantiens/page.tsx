@@ -5,22 +5,22 @@ import AnimationTantiens from '../../../components/animations/tantiens/Animation
 
 const TheTantiensPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
 
       {/* ======================= FIRST SECTION — Overview ======================= */}
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         
         {/* LEFT COLUMN — Text content */}
         <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 leading-tight">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
             The Tantiens
           </h2>
-          <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+          <p className="text-gray-700 text-lg mb-6 leading-relaxed text-justify">
             The Tantiens are created in the sacred geometry dimension by intersecting spheres along
             their vertical axes, forming the geometry of <em>Vesica Piscis</em>. They serve as energy centers
             or containers that regulate and amplify vital energy throughout the physical, emotional, and mental bodies.
           </p>
-          <ul className="list-disc list-inside text-gray-700 space-y-3 text-base lg:text-lg">
+          <ul className="list-disc list-inside text-gray-700 text-justify space-y-3 text-base lg:text-lg">
             <li>They act as energetic batteries for the physical, emotional, and mental bodies.</li>
             <li>They maintain a direct connection to the physical, astral, and informational layers of the Universe.</li>
             <li>They hold and interact with the three primary areas of the Sephirot Tree.</li>

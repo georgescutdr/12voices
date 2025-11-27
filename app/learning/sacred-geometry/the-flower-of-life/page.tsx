@@ -8,11 +8,11 @@ import AnimationHydra3 from '../../../components/animations/hydra/AnimationHydra
 
 const TheFlowerOfLifePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
       {/* SECTION 1: Flower of Life */}
-      <div className="flex flex-col md:flex-row h-auto md:h-screen w-full">
-        <div className="w-full md:w-1/2 bg-white flex flex-col justify-center items-start p-8 space-y-6">
-          <h2 className="text-3xl font-semibold text-black mb-4">The Flower of Life</h2>
+      <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
+        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">The Flower of Life</h2>
 
           <p className="text-gray-700 text-base mb-4 leading-relaxed">
             The Flower of Life is one of the foundational structures in sacred geometry, representing the blueprint of the Universe and the interconnectedness of all life. 

@@ -5,21 +5,21 @@ import AnimationMerkaba from '../../../components/animations/merkaba/AnimationMe
 
 const MerkabaPage: React.FC = () => {
   return (
-    <div className="bg-white flex flex-col w-full">
+    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
 
       {/* ======================= SECTION 1 — Overview + Animation ======================= */}
-      <section className="flex flex-col md:flex-row w-full h-auto md:h-screen border-b border-gray-200">
+      <section className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         
         {/* LEFT PANEL — Text + Bullets */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-start p-8 lg:p-16 space-y-6">
-          <h1 className="text-4xl lg:text-5xl font-bold text-black leading-tight">
+        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
             The Merkaba
-          </h1>
+          </h2>
           <p className="text-gray-700 text-lg leading-relaxed">
             The Merkaba is a sacred spinning geometry that integrates light, energy, and consciousness into our dimension.
             It acts as a vehicle, portal, and protective field, allowing access to higher dimensions while harmonizing the human energy system.
           </p>
-          <ul className="list-disc pl-6 text-gray-700 space-y-3 text-lg">
+          <ul className="list-disc pl-6 mt-10 text-gray-700 space-y-3 text-lg">
             <li>White pyramid points upwards, generating ascending light energy.</li>
             <li>Black pyramid points downwards, generating descending dark energy.</li>
             <li>Both share a central point and spin in opposite directions: clockwise (white), counterclockwise (black).</li>
