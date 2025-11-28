@@ -25,6 +25,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.page {
+  @apply min-h-screen bg-white flex flex-col text-justify;
+}
+
 .h1-global {
     @apply text-4xl lg:text-5xl font-semibold text-left text-black mb-6 leading-tight drop-shadow-md;
 }
@@ -35,6 +39,10 @@ body {
 
 .ul-global {
     @apply list-disc list-inside text-gray-700 space-y-3 text-base lg:text-lg drop-shadow-sm;
+}
+
+.section-1 {
+  @apply flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm;
 }
 
 /* LEFT COLUMN */

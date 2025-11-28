@@ -8,9 +8,9 @@ import AnimationHydra3 from '../../../components/animations/hydra/AnimationHydra
 
 const TheFlowerOfLifePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
+    <div className="page">
       {/* SECTION 1: Flower of Life */}
-      <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
+      <div className="section-1">
         <div className="left-col">
           <h1 className="h1-global">
             The Flower of Life
@@ -94,7 +94,7 @@ const TheFlowerOfLifePage: React.FC = () => {
       </div>
 
       {/* SECTION 5: Hydra 3 */}
-      <div className="flex flex-col-reverse md:flex-row h-auto md:h-screen w-full">
+      <div className="flex flex-col-reverse md:flex-row w-full min-h-screen   ">
         <div className="w-full md:w-1/2 bg-black relative flex justify-center items-center p-6">
           <AnimationHydra3 />
         </div>

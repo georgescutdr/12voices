@@ -5,10 +5,10 @@ import AnimationTherapy from '../components/animations/therapy/AnimationTherapy'
 
 const TherapyPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
+    <div className="page">
 
       {/* HERO SECTION */}
-      <section className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
+      <div className="section-1">
 
         {/* Left - Text */}
         <div className="left-col">
@@ -36,13 +36,8 @@ const TherapyPage: React.FC = () => {
         <div className="right-col">
             <AnimationTherapy />
         </div>
-
-        {/* Background subtle gradient for depth */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-50 to-white -z-10"></div>
-      </section>
-
+      </div>
  
-
       {/* DETAILS SECTION */}
       <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-4xl mx-auto space-y-12 relative z-10">
@@ -96,9 +91,6 @@ const TherapyPage: React.FC = () => {
           </div>
 
         </div>
-
-        {/* subtle shadow background */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50 to-white shadow-inner rounded-xl"></div>
       </section>
 
     </div>

@@ -5,10 +5,10 @@ import AnimationTrinity from '../../components/animations/trinity/AnimationTrini
 
 const TheTrinityPage: React.FC = () => {
   return (
-    <div className=" bg-white flex flex-col text-justify drop-shadow-sm">
+    <div className="page">
 
       {/* ======================= FIRST SECTION — Trinity Overview ======================= */}
-      <div className="flex flex-col lg:flex-row w-full lg:min-h-screen border-b border-gray-200 shadow-sm">
+      <div className="section-1">
         {/* LEFT COLUMN — Text */}
         <div className="left-col">
           <h1 className="h1-global">

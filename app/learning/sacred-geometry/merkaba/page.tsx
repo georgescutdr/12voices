@@ -5,10 +5,10 @@ import AnimationMerkaba from '../../../components/animations/merkaba/AnimationMe
 
 const MerkabaPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
+    <div className="page">
 
       {/* ======================= SECTION 1 — Overview + Animation ======================= */}
-      <section className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
+      <div className="section-1">
         
         {/* LEFT PANEL — Text + Bullets */}
         <div className="left-col">
@@ -32,7 +32,7 @@ const MerkabaPage: React.FC = () => {
         <div className="right-col">
           <AnimationMerkaba />
         </div>
-      </section>
+      </div>
 
       {/* ======================= SECTION 2 — In-Depth Description ======================= */}
       <section className="ww-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">

@@ -6,13 +6,13 @@ import ChakraBar from '../../../components/chakra-bar/ChakraBar';
 
 const Chakra5Page: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
+    <div className="page">
 
       {/* === CHAKRA NAVIGATION BAR === */}
       <ChakraBar />
 
-      {/* === SECTION 1: Chakra Overview === */}
-      <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
+      {/* === SECTION 5: Chakra Overview === */}
+      <div className="section-1">
         {/* Left/Text Section */}
         <div className="left-col">
           <h1 className="h1-global">

@@ -52,27 +52,22 @@ const AnimationHydra3: React.FC = () => {
     };
 
     const center = { x: 0, y: 0 };
-    const bodyRadius = 40;
-    const headRadius = 18;
     const numHeads = 16;
-    const neckLength = 200;
     const segments = 35;
-
-    const behaviors = ['shake', 'circle', 'spiral', 'snap'] as const;
 
     const heads: Head[] = Array.from({ length: numHeads }, (_, i) => ({
       baseAngle: (Math.PI * 2 / numHeads) * i,
       phase: Math.random() * Math.PI * 2,
       speed: 1 + Math.random() * 3,
-      waveAmp: 10 + Math.random() * 50,
+      waveAmp: 0, // will scale per frame
       waveFreq: 2 + Math.random() * 4,
       chaosFactor: 0.5 + Math.random() * 2,
-      behavior: behaviors[Math.floor(Math.random() * behaviors.length)],
+      behavior: ['shake', 'circle', 'spiral', 'snap'][Math.floor(Math.random() * 4)] as any,
       snapBackTimer: 0,
       snapOffset: { x: 0, y: 0 },
     }));
 
-    const drawNeck = (h: Head, time: number) => {
+    const drawNeck = (h: Head, time: number, bodyRadius: number, neckLength: number, headRadius: number) => {
       const pts: { x: number; y: number }[] = [];
       const angle = h.baseAngle + Math.sin(time * 0.6 + h.phase) * 0.4 * h.chaosFactor;
       const dx = Math.cos(angle), dy = Math.sin(angle);
@@ -80,17 +75,17 @@ const AnimationHydra3: React.FC = () => {
       for (let i = 0; i <= segments; i++) {
         const t = i / segments;
         const len = t * neckLength;
-        const flicker = (Math.random() - 0.5) * h.chaosFactor * 6;
-        const wave = Math.sin(time * h.speed + t * h.waveFreq * Math.PI * 2 + h.phase) * (h.waveAmp + flicker);
-        const px = center.x + dx * len + -dy * wave + (Math.random() - 0.5) * 2;
-        const py = center.y + dy * len + dx * wave + (Math.random() - 0.5) * 2;
+        const flicker = (Math.random() - 0.5) * h.chaosFactor * neckLength * 0.02;
+        const wave = Math.sin(time * h.speed + t * h.waveFreq * Math.PI * 2 + h.phase) * (neckLength * 0.1 + flicker);
+        const px = center.x + dx * len + -dy * wave;
+        const py = center.y + dy * len + dx * wave;
         pts.push({ x: px, y: py });
       }
 
       ctx.beginPath();
       const hue = (time * 40 + h.phase * 50) % 360;
       ctx.strokeStyle = `hsla(${hue}, 100%, 60%, 0.5)`;
-      ctx.lineWidth = 3 + Math.sin(time * 5 + h.phase) * 2;
+      ctx.lineWidth = Math.max(1, bodyRadius * 0.1);
       ctx.moveTo(pts[0].x, pts[0].y);
       for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
       ctx.stroke();
@@ -110,7 +105,13 @@ const AnimationHydra3: React.FC = () => {
 
       ctx.clearRect(0, 0, W, H);
 
-      // Body
+      // Scale everything based on the smaller canvas dimension
+      const minDim = Math.min(W, H);
+      const bodyRadius = minDim * 0.07;
+      const headRadius = minDim * 0.03;
+      const neckLength = minDim * 0.45;
+
+      // Draw body
       ctx.beginPath();
       ctx.fillStyle = '#330033';
       ctx.arc(center.x, center.y, bodyRadius, 0, Math.PI * 2);
@@ -118,30 +119,30 @@ const AnimationHydra3: React.FC = () => {
 
       heads.forEach(h => {
         h.phase += 0.02 * h.chaosFactor * (0.5 + Math.sin(time * 0.3 + h.phase));
-        const headPos = drawNeck(h, time);
+        const headPos = drawNeck(h, time, bodyRadius, neckLength, headRadius);
 
         let jitterX = 0, jitterY = 0;
 
         switch (h.behavior) {
           case 'shake':
-            jitterX = (Math.random() - 0.5) * 20;
-            jitterY = (Math.random() - 0.5) * 20;
+            jitterX = (Math.random() - 0.5) * neckLength * 0.1;
+            jitterY = (Math.random() - 0.5) * neckLength * 0.1;
             break;
           case 'circle':
-            const rC = 10 + Math.sin(time * h.speed + h.phase) * 5;
+            const rC = neckLength * 0.05;
             jitterX = Math.cos(time * 2 + h.phase) * rC;
             jitterY = Math.sin(time * 2 + h.phase) * rC;
             break;
           case 'spiral':
-            const rS = (Math.sin(time * h.speed + h.phase) + 1) * 10;
+            const rS = neckLength * 0.05;
             jitterX = Math.cos(time * 5 + h.phase) * rS;
             jitterY = Math.sin(time * 5 + h.phase) * rS;
             break;
           case 'snap':
             if (Math.random() < 0.01 && h.snapBackTimer <= 0) {
               h.snapOffset = {
-                x: (Math.random() - 0.5) * 100,
-                y: (Math.random() - 0.5) * 100,
+                x: (Math.random() - 0.5) * neckLength * 0.2,
+                y: (Math.random() - 0.5) * neckLength * 0.2,
               };
               h.snapBackTimer = 20 + Math.random() * 30;
             }
@@ -158,7 +159,7 @@ const AnimationHydra3: React.FC = () => {
         ctx.beginPath();
         ctx.fillStyle = '#ff0077';
         ctx.shadowColor = '#ff0077';
-        ctx.shadowBlur = 18;
+        ctx.shadowBlur = neckLength * 0.05;
         ctx.arc(headPos.x + jitterX, headPos.y + jitterY, headRadius, 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;

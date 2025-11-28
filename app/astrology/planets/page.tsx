@@ -5,10 +5,10 @@ import AnimationPlanets from '../../components/animations/planets/AnimationPlane
 
 const PlanetsPage: React.FC = () => {
   return (
-    <div className="bg-white text-black relative overflow-hidden min-h-screen">
+    <div className="page">
 
       {/* HERO SECTION */}
-      <section className="relative flex flex-col lg:flex-row w-full min-h-screen">
+      <div className="section-1">
 
         {/* LEFT SIDE — TITLE & INTRO */}
         <div className="left-col">
@@ -28,7 +28,7 @@ const PlanetsPage: React.FC = () => {
         <div className="right-col">
           <AnimationPlanets />
         </div>
-      </section>
+      </div>
 
       {/* PLANETARY DETAILS SECTION */}
       <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">

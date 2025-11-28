@@ -6,10 +6,10 @@ import SephirotTreeSelect from '../../../components/sephirot-tree-select/Sephiro
 
 const TheSephirotTreePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col text-justify drop-shadow-sm">
+    <div className="page">
 
       {/* Section 1: Text + Animation */}
-      <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
+      <div className="section-1">
         {/* Left panel: Title and bullets */}
         <div className="left-col">
           <h1 className="h1-global">

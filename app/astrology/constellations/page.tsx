@@ -5,10 +5,10 @@ import AnimationConstellations from "../../components/animations/constellations/
 
 const ConstellationsPage: React.FC = () => {
   return (
-    <div className="bg-white text-global relative overflow-hidden min-h-screen">
+    <div className="page">
 
       {/* HERO SECTION */}
-      <section className="flex flex-col md:flex-row h-auto md:h-screen w-full">
+      <div className="section-1">
         
         {/* LEFT SIDE — INTRO TEXT */}
         <div className="left-col">
@@ -32,7 +32,7 @@ const ConstellationsPage: React.FC = () => {
 
         {/* SUBTLE BACKGROUND */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white to-gray-100 -z-10"></div>
-      </section>
+      </div>
 
       {/* CONSTELLATION DETAILS SECTION */}
       <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex text-justify">

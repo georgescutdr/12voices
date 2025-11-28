@@ -5,10 +5,10 @@ import Link from 'next/link';
 
 const ReadingsPage: React.FC = () => {
   return (
-    <div className="bg-white text-black min-h-screen relative overflow-hidden font-sans">
+    <div className="page">
 
       {/* HERO SECTION */}
-      <section className="w-full flex flex-col lg:flex-row items-start justify-between px-12 lg:px-32 py-24max-w-3xl">
+      <div className="section-1">
         
         {/* LEFT SIDE — TITLE & INTRO */}
         <div className="left-col">
@@ -38,7 +38,7 @@ const ReadingsPage: React.FC = () => {
         <div className="left-col">
           <span className="text-black font-semibold">Your Logo / Image</span>
         </div>
-      </section>
+      </div>
 
       {/* INFO SECTION */}
       <section className="w-full bg-gray-50 border-gray-200 px-8 mx-auto px-6 lg:px-0 py-12 shadow-inner">

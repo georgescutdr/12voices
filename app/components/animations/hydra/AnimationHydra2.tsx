@@ -24,7 +24,6 @@ const AnimationHydra2: React.FC = () => {
 
     const resizeCanvas = () => {
       const rect = container.getBoundingClientRect();
-
       width = rect.width;
       height = rect.height;
 
@@ -41,11 +40,16 @@ const AnimationHydra2: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
+    // Center relative to canvas
     const center = { x: () => width / 2, y: () => height / 2 };
-    const bodyRadius = 40;
-    const headRadius = 18;
+
+    // Scale everything based on smaller dimension
+    const minDim = () => Math.min(width, height);
+
+    const bodyRadius = () => minDim() * 0.07;   // body scales
+    const headRadius = () => minDim() * 0.03;   // head scales
     const numHeads = 12;
-    const neckLength = 180;
+    const neckLength = () => minDim() * 0.45;   // neck scales
     const segments = 30;
 
     if (headsRef.current.length === 0) {
@@ -55,7 +59,7 @@ const AnimationHydra2: React.FC = () => {
           baseAngle: angle,
           phase: Math.random() * Math.PI * 2,
           speed: 2 + Math.random() * 2,
-          waveAmp: 15 + Math.random() * 35,
+          waveAmp: 0.08 + Math.random() * 0.12, // relative to neck
           waveFreq: 3 + Math.random() * 3,
           chaosFactor: 0.5 + Math.random() * 1.5,
         };
@@ -70,10 +74,10 @@ const AnimationHydra2: React.FC = () => {
 
       for (let i = 0; i <= segments; i++) {
         const t = i / segments;
-        const len = t * neckLength;
-        const flicker = (Math.random() - 0.5) * head.chaosFactor * 4;
+        const len = t * neckLength();
+        const flicker = (Math.random() - 0.5) * head.chaosFactor * 0.04 * minDim();
         const wave = Math.sin(time * head.speed + t * head.waveFreq * Math.PI * 2 + head.phase) *
-          (head.waveAmp + flicker);
+          (head.waveAmp * minDim() + flicker);
         const px = center.x() + dx * len + -dy * wave;
         const py = center.y() + dy * len + dx * wave;
         points.push({ x: px, y: py });
@@ -81,7 +85,7 @@ const AnimationHydra2: React.FC = () => {
 
       ctx.beginPath();
       ctx.strokeStyle = `rgba(180, 0, 255, 0.6)`;
-      ctx.lineWidth = 3 + Math.sin(time * 10) * 1.5;
+      ctx.lineWidth = Math.max(1, 3 * (minDim() / 600));
       ctx.moveTo(points[0].x, points[0].y);
       for (let i = 1; i < points.length; i++) {
         ctx.lineTo(points[i].x, points[i].y);
@@ -103,21 +107,21 @@ const AnimationHydra2: React.FC = () => {
       // Draw body
       ctx.beginPath();
       ctx.fillStyle = '#220033';
-      ctx.arc(center.x(), center.y(), bodyRadius, 0, Math.PI * 2);
+      ctx.arc(center.x(), center.y(), bodyRadius(), 0, Math.PI * 2);
       ctx.fill();
 
       headsRef.current.forEach((h) => {
         h.phase += 0.01 * h.chaosFactor;
         const headPos = drawNeck(h, time);
 
-        const jitterX = (Math.random() - 0.5) * 12;
-        const jitterY = (Math.random() - 0.5) * 12;
+        const jitterX = (Math.random() - 0.5) * 0.02 * minDim();
+        const jitterY = (Math.random() - 0.5) * 0.02 * minDim();
 
         ctx.beginPath();
         ctx.fillStyle = '#ff00cc';
         ctx.shadowColor = '#ff00cc';
-        ctx.shadowBlur = 15;
-        ctx.arc(headPos.x + jitterX, headPos.y + jitterY, headRadius, 0, Math.PI * 2);
+        ctx.shadowBlur = Math.max(5, minDim() * 0.025);
+        ctx.arc(headPos.x + jitterX, headPos.y + jitterY, headRadius(), 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;
       });
