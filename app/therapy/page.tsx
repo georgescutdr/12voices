@@ -11,10 +11,10 @@ const TherapyPage: React.FC = () => {
       <section className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
 
         {/* Left - Text */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             Energy Therapy
-          </h2>
+          </h1>
 
           <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
             Remote energy therapy blends modern wellness insights with subtle energetic
@@ -33,10 +33,8 @@ const TherapyPage: React.FC = () => {
         </div>
 
         {/* Right - Animation */}
-        <div className="lg:w-1/2 mt-62  relative z-10 flex justify-center items-center">
-          <div className="w-full h-[320px] lg:h-[400px]">
+        <div className="right-col">
             <AnimationTherapy />
-          </div>
         </div>
 
         {/* Background subtle gradient for depth */}

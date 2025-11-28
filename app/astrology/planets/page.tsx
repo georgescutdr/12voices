@@ -11,8 +11,8 @@ const PlanetsPage: React.FC = () => {
       <section className="relative flex flex-col lg:flex-row w-full min-h-screen">
 
         {/* LEFT SIDE — TITLE & INTRO */}
-        <div className="lg:w-1/2 flex flex-col justify-center px-8 md:px-12 lg:px-24 py-16 bg-white relative z-10">
-          <h1 className="text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-md mb-8">
+        <div className="left-col">
+          <h1 className="h1-global">
             The Planets & Their Spiritual Essence
           </h1>
 
@@ -25,10 +25,8 @@ const PlanetsPage: React.FC = () => {
         </div>
 
         {/* RIGHT SIDE — PLANETS ANIMATION */}
-        <div className="lg:w-1/2 w-full flex justify-center items-center bg-[#00001e] relative">
-          <div className="w-full h-[60vh] sm:h-[70vh] lg:h-full flex justify-center items-center">
-            <AnimationPlanets />
-          </div>
+        <div className="right-col">
+          <AnimationPlanets />
         </div>
       </section>
 
@@ -39,7 +37,7 @@ const PlanetsPage: React.FC = () => {
             The Spiritual Archetypes of the Planets
           </h2>
 
-          <ul className="list-disc list-inside text-gray-800 space-y-3 text-md lg:text-lg drop-shadow-sm">
+          <ul className="ul-global">
             <li>
               <strong>☿ Mercury —</strong> The Messenger. Governs intellect, communication, and the bridge between spirit and mind.
             </li>

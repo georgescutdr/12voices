@@ -14,10 +14,10 @@ const Chakra3Page: React.FC = () => {
       {/* === SECTION 1: Chakra Overview === */}
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Text Section */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             Chakra 3: Solar Plexus Chakra
-          </h2>
+          </h1>
           <p className="text-gray-700 text-base mb-4 text-justify md:text-left">
             The Solar Plexus Chakra represents our personal power, confidence, and inner fire:
           </p>
@@ -31,10 +31,8 @@ const Chakra3Page: React.FC = () => {
         </div>
 
         {/* Animation Section */}
-        <div className="w-full md:w-1/2 bg-black flex justify-center items-center p-4">
-          <div className="w-full h-80 md:h-[80vh]">
-            <AnimationChakra3 />
-          </div>
+        <div className="right-col">
+          <AnimationChakra3 />
         </div>
       </div>
 

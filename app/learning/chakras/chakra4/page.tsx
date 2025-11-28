@@ -13,10 +13,10 @@ const Chakra4Page: React.FC = () => {
       {/* === SECTION 1: Chakra Overview === */}
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Text Section */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             Chakra 4: Heart Chakra
-          </h2>
+          </h1>
           <p className="text-gray-700 text-base mb-4">
             The Heart Chakra governs love, compassion, and emotional healing:
           </p>
@@ -33,10 +33,8 @@ const Chakra4Page: React.FC = () => {
         </div>
 
         {/* Animation Section */}
-        <div className="w-full md:w-1/2 flex justify-center items-center p-4 bg-black min-h-[50vh] sm:min-h-[60vh] md:min-h-full">
-          <div className="w-full max-w-md h-auto flex justify-center items-center">
-            <AnimationChakra4 />
-          </div>
+        <div className="right-col">
+          <AnimationChakra4 />
         </div>
       </div>
 

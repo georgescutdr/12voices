@@ -11,8 +11,10 @@ const MetatronCubePage: React.FC = () => {
       {/* ======================= SECTION 1: Metatron's Cube ======================= */}
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Left column - Text */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">Metatron's Cube</h2>
+        <div className="left-col">
+          <h1 className="h1-global">
+            Metatron's Cube
+          </h1>
           <p className="text-gray-700 text-base md:text-lg leading-relaxed">
             Metatron's Cube is a sacred geometric figure derived from the Flower of Life. It acts as a blueprint of creation, 
             connecting the centers of the spheres to form complex, multidimensional patterns that hold universal energy.
@@ -27,7 +29,7 @@ const MetatronCubePage: React.FC = () => {
         </div>
 
         {/* Right column - Animation */}
-        <div className="w-full md:w-1/2 bg-black relative flex justify-center items-center p-6 h-96 md:h-auto z-0">
+        <div className="right-col">
           <AnimationMetatronCube />
         </div>
       </div>

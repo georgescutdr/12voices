@@ -14,10 +14,10 @@ const Chakra2Page: React.FC = () => {
       {/* === SECTION 1: Chakra Overview === */}
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Text Section */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             Chakra 2: Sacral Chakra
-          </h2>
+          </h1>
           <p className="text-gray-700 text-base ">
             The Sacral Chakra governs creativity, emotions, and our ability to connect with others:
           </p>
@@ -33,7 +33,7 @@ const Chakra2Page: React.FC = () => {
         </div>
 
         {/* Animation Section */}
-        <div className="w-full md:w-1/2 bg-black relative flex justify-center items-center p-4">
+        <div className="right-col">
           <AnimationChakra2 />
         </div>
       </div>

@@ -11,10 +11,10 @@ const MerkabaPage: React.FC = () => {
       <section className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         
         {/* LEFT PANEL — Text + Bullets */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             The Merkaba
-          </h2>
+          </h1>
           <p className="text-gray-700 text-lg leading-relaxed">
             The Merkaba is a sacred spinning geometry that integrates light, energy, and consciousness into our dimension.
             It acts as a vehicle, portal, and protective field, allowing access to higher dimensions while harmonizing the human energy system.
@@ -29,7 +29,7 @@ const MerkabaPage: React.FC = () => {
         </div>
 
         {/* RIGHT PANEL — Animation */}
-        <div className="w-full md:w-1/2 relative flex justify-center items-center h-[60vh] md:h-auto p-6 lg:p-16 bg-black">
+        <div className="right-col">
           <AnimationMerkaba />
         </div>
       </section>

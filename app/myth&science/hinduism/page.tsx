@@ -146,7 +146,9 @@ export default function HinduismCosmologyPage() {
 
         {/* HEADER */}
         <header className="space-y-4">
-          <h1 className="text-4xl lg:text-5xl font-bold">Hindu Myth & Legend ↔ Quantum Physics & Cosmology</h1>
+          <h1 className="h1-global">
+            Hindu Myth & Legend ↔ Quantum Physics & Cosmology
+          </h1>
           <p className="text-lg text-gray-700">
             In Hindu tradition, the stories of gods, goddesses, and cosmic events have served for millennia as symbolic ways to describe the nature of reality, existence, and human experience. Modern science, in parallel, seeks to describe the universe through mathematical, experimental, and conceptual frameworks.
           </p>

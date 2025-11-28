@@ -245,7 +245,7 @@ export default function GreekMythologyEvolutionPage() {
 
         {/* INTRO */}
         <section className="space-y-4 max-w-4xl">
-          <h1 className="text-4xl lg:text-5xl font-bold">
+          <h1 className="h1-global">
             Greek Gods & Myths — Symbolic Evolution of Earth and Human Development
           </h1>
         </section>

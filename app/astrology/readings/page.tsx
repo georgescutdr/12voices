@@ -11,8 +11,8 @@ const ReadingsPage: React.FC = () => {
       <section className="w-full flex flex-col lg:flex-row items-start justify-between px-12 lg:px-32 py-24max-w-3xl">
         
         {/* LEFT SIDE — TITLE & INTRO */}
-        <div className="lg:w-1/2 space-y-8">
-          <h1 className="text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             Astrology Readings
           </h1>
 
@@ -35,11 +35,8 @@ const ReadingsPage: React.FC = () => {
         </div>
 
         {/* RIGHT SIDE — OPTIONAL IMAGE OR ICON */}
-        <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center items-center">
-          {/* Placeholder for animation or image */}
-          <div className="w-64 h-64 border-2 border-black flex items-center justify-center">
-            <span className="text-black font-semibold">Your Logo / Image</span>
-          </div>
+        <div className="left-col">
+          <span className="text-black font-semibold">Your Logo / Image</span>
         </div>
       </section>
 

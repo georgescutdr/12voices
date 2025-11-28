@@ -14,10 +14,10 @@ const Chakra7Page: React.FC = () => {
       {/* === SECTION 1: Chakra Overview === */}
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Left panel: Title and bullets */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             Chakra 7: Crown Chakra
-          </h2>
+          </h1>
           <p className="text-gray-700 text-base mb-4 text-justify lg:text-left">
             The Crown Chakra represents our connection to the divine and higher consciousness:
           </p>
@@ -31,12 +31,8 @@ const Chakra7Page: React.FC = () => {
         </div>
 
         {/* Right panel: Chakra7 animation */}
-        <div className="w-full lg:w-1/2 bg-black relative flex justify-center items-center p-0 min-h-[50vh] sm:min-h-[60vh] lg:min-h-full">
-          <div className="w-full h-full flex justify-center items-center">
-            <div className="w-full h-[80vh] sm:h-[90vh] flex justify-center items-center">
+        <div className="right-col">
               <AnimationChakra7 />
-            </div>
-          </div>
         </div>
       </div>
 

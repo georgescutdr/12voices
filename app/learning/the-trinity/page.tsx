@@ -10,10 +10,10 @@ const TheTrinityPage: React.FC = () => {
       {/* ======================= FIRST SECTION — Trinity Overview ======================= */}
       <div className="flex flex-col lg:flex-row w-full lg:min-h-screen border-b border-gray-200 shadow-sm">
         {/* LEFT COLUMN — Text */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-left text-black mb-6 leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             The Trinity
-          </h2>
+          </h1>
 
           <p className="text-gray-700 text-lg mb-6">
             The Trinity represents the first and main building block of Creation. 
@@ -45,7 +45,7 @@ const TheTrinityPage: React.FC = () => {
         </div>
 
         {/* RIGHT COLUMN — Animation */}
-        <div className="w-full md:w-1/2 bg-black relative flex justify-center md:items-center p-2 sm:p-4 h-auto md:h-full">
+        <div className="right-col">
           <AnimationTrinity />
         </div>
       </div>

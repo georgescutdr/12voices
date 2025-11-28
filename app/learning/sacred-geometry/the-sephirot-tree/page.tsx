@@ -11,10 +11,10 @@ const TheSephirotTreePage: React.FC = () => {
       {/* Section 1: Text + Animation */}
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Left panel: Title and bullets */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             The Sephirot Tree
-          </h2>
+          </h1>
           <p className="text-gray-700 text-base mb-4 text-justify md:text-left">
             The Sephirot Tree is an energetic blueprint that connects the layers of the universe and mirrors the human energy system. 
             It guides the flow of energy through specific points, harmonizing physical, emotional, and spiritual levels.
@@ -31,10 +31,8 @@ const TheSephirotTreePage: React.FC = () => {
         </div>
 
         {/* Right panel: Animation */}
-        <div className="w-full bg-black md:w-1/2 flex justify-center items-center">
-          <div className="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto">
-            <AnimationSephirotTree />
-          </div>
+        <div className="right-col">
+          <AnimationSephirotTree />
         </div>
       </div>
 

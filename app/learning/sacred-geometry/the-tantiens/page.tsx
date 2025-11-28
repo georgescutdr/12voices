@@ -11,10 +11,10 @@ const TheTantiensPage: React.FC = () => {
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         
         {/* LEFT COLUMN — Text content */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             The Tantiens
-          </h2>
+          </h1>
           <p className="text-gray-700 text-lg mb-6 leading-relaxed text-justify">
             The Tantiens are created in the sacred geometry dimension by intersecting spheres along
             their vertical axes, forming the geometry of <em>Vesica Piscis</em>. They serve as energy centers
@@ -29,7 +29,7 @@ const TheTantiensPage: React.FC = () => {
         </div>
 
         {/* RIGHT COLUMN — Animation */}
-        <div className="w-full lg:w-1/2 bg-black relative flex justify-center items-center p-6">
+        <div className="right-col">
           <AnimationTantiens />
         </div>
       </div>

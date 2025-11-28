@@ -9,7 +9,7 @@ export default function EnergyAndSciencePage() {
 
         {/* HEADER */}
         <section className="space-y-4">
-          <h1 className="text-4xl lg:text-5xl font-bold">
+          <h1 className="h1-global">
             Bridging Chakras, Auras & Energy Therapy with Modern Science
           </h1>
           <p className="text-lg text-gray-700">

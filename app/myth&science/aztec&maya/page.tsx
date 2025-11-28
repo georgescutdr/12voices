@@ -152,7 +152,7 @@ export default function MesoamericanMythologyPage() {
 
         {/* INTRO */}
         <section className="space-y-4 max-w-4xl">
-          <h1 className="text-4xl lg:text-5xl font-bold">
+          <h1 className="h1-global">
             Aztec & Maya Gods and Myths — Symbolic Evolution of Earth and Humanity
           </h1>
         </section>

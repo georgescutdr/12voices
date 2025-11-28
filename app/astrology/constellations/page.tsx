@@ -5,14 +5,14 @@ import AnimationConstellations from "../../components/animations/constellations/
 
 const ConstellationsPage: React.FC = () => {
   return (
-    <div className="bg-white text-black relative overflow-hidden min-h-screen">
+    <div className="bg-white text-global relative overflow-hidden min-h-screen">
 
       {/* HERO SECTION */}
       <section className="flex flex-col md:flex-row h-auto md:h-screen w-full">
         
         {/* LEFT SIDE — INTRO TEXT */}
-        <div className="lg:w-1/2 w-full space-y-10 relative z-10 px-12 lg:px-32 py-24 pr-12 lg:pr-24 text-justify">
-          <h1 className="text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-md">
+        <div className="left-col">
+          <h1 className="h1-global">
             The Constellations & The Soul of the Cosmos
           </h1>
  
@@ -26,7 +26,7 @@ const ConstellationsPage: React.FC = () => {
         </div>
 
         {/* RIGHT SIDE — CONSTELLATIONS ANIMATION */}
-        <div className="w-full md:w-1/2 bg-black relative flex justify-center items-center p-4">
+        <div className="right-col">
           <AnimationConstellations />
         </div>
 
@@ -42,7 +42,7 @@ const ConstellationsPage: React.FC = () => {
             The Zodiac Archetypes
           </h2>
 
-          <ul className="list-disc list-inside text-gray-800 space-y-3 text-md lg:text-lg drop-shadow-sm">
+          <ul className="list-none">
             <li><strong>♈ Aries —</strong> The Fire of Beginning. Symbol of courage, initiative, and the spark of divine action. Aries awakens the soul to the joy of stepping into new beginnings.</li>
             <li><strong>♉ Taurus —</strong> The Earthly Temple. Embodies stability, devotion, and the sacredness of form and matter. Taurus grounds the spirit and fosters appreciation for beauty and abundance.</li>
             <li><strong>♊ Gemini —</strong> The Celestial Twins. Reflects duality, communication, and the interplay of mind and spirit. Gemini guides the soul to discern, connect, and express its inner truths.</li>

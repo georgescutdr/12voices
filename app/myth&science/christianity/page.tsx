@@ -314,7 +314,7 @@ export default function ChristianityExtendedPage() {
 
         {/* INTRO */}
         <section className="space-y-4 max-w-4xl">
-          <h1 className="text-4xl lg:text-5xl font-bold">
+          <h1 className="h1-global">
             A Symbolic Bridge Between Scripture & Science
           </h1>
         </section>

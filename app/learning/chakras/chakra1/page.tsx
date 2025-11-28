@@ -13,14 +13,14 @@ const Chakra1Page: React.FC = () => {
       {/* === SECTION 1: Chakra Overview === */}
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Text Section */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black text-left mb-6 leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             Chakra 1: Root Chakra
-          </h2>
+          </h1>
           <p className="text-gray-700 text-base mb-4">
             The Root Chakra represents our foundation and feeling of being grounded:
           </p>
-          <ul className="list-disc list-inside text-gray-700 space-y-2">
+          <ul className="list-disc list-inside text-global space-y-2">
             <li>Located at the base of the spine</li>
             <li>Associated with survival, stability, and security</li>
             <li>Color: Red</li>
@@ -33,7 +33,7 @@ const Chakra1Page: React.FC = () => {
         </div>
 
         {/* Animation Section */}
-        <div className="w-full md:w-1/2 bg-black relative flex justify-center md:items-center p-2 sm:p-4">
+        <div className="right-col">
           <AnimationChakra1 />
         </div>
 

@@ -11,7 +11,7 @@ export default function ContactPage() {
       
       {/* HEADER */}
       <section className="text-center space-y-6 max-w-2xl">
-        <h1 className="text-5xl lg:text-6xl font-bold drop-shadow-lg">
+        <h1 className="h1-global">
           Get in Touch
         </h1>
         <p className="text-lg lg:text-xl text-gray-300 drop-shadow-md">

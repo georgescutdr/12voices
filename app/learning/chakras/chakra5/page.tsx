@@ -14,10 +14,10 @@ const Chakra5Page: React.FC = () => {
       {/* === SECTION 1: Chakra Overview === */}
       <div className="flex flex-col lg:flex-row w-full min-h-screen border-b border-gray-200 shadow-sm">
         {/* Left/Text Section */}
-        <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-start p-8 lg:p-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-black mb-6 text-left leading-tight">
+        <div className="left-col">
+          <h1 className="h1-global">
             Chakra 5: The Communication Chakra
-          </h2>
+          </h1>
           <p className="text-gray-700 text-base mb-4 text-justify lg:text-left">
             The Throat Chakra governs our ability to communicate truth, express ourselves, and connect with higher consciousness:
           </p>
@@ -31,10 +31,8 @@ const Chakra5Page: React.FC = () => {
         </div>
 
         {/* Right/Animation Section */}
-        <div className="w-full lg:w-1/2 bg-black relative flex justify-center items-center p-6 min-h-[50vh] sm:min-h-[60vh] lg:min-h-full">
-          <div className="w-full max-w-md h-auto flex justify-center items-center">
-            <AnimationChakra5 />
-          </div>
+        <div className="right-col">
+          <AnimationChakra5 />
         </div>
       </div>
 
