@@ -84,15 +84,33 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
     let W = container.clientWidth;
     let H = container.clientHeight;
 
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
-    canvas.style.width = `${W}px`;
-    canvas.style.height = `${H}px`;
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
+    const getScale = () => {
+      const w = window.innerWidth;
+      if (w < 640) return 0.6; // small screens
+      if (w < 1024) return 0.8; // medium screens
+      return 1; // large screens
+    };
 
-    const spacingValue = spacing ?? sphereRadius;
-    const containerRadius = spacingValue + sphereRadius;
+    const resizeCanvas = () => {
+      W = container.clientWidth;
+      H = container.clientHeight;
+      const scale = getScale();
+
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = `${W}px`;
+      canvas.style.height = `${H}px`;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      sphereRadiusScaled = sphereRadius * scale;
+      spacingScaled = (spacing ?? sphereRadius) * scale;
+      containerRadiusScaled = spacingScaled + sphereRadiusScaled;
+    };
+
+    let sphereRadiusScaled = sphereRadius;
+    let spacingScaled = spacing ?? sphereRadius;
+    let containerRadiusScaled = spacingScaled + sphereRadiusScaled;
 
     const centerX = () => container.clientWidth / 2;
     const centerY = () => container.clientHeight / 2;
@@ -108,7 +126,7 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
 
     const spheres: Sphere[] = spheresParams.map((params, i) => ({
       x: centerX,
-      y: () => centerY() + (i - 1) * spacingValue,
+      y: () => centerY() + (i - 1) * spacingScaled,
       params,
     }));
 
@@ -170,14 +188,14 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
     ) => {
       if (glowAlpha > 0) {
         const glowColor = `rgba(${baseRGB[0]},${baseRGB[1]},${baseRGB[2]},${glowAlpha})`;
-        const grad = context.createRadialGradient(x, y, 10, x, y, sphereRadius);
+        const grad = context.createRadialGradient(x, y, 10, x, y, sphereRadiusScaled);
         grad.addColorStop(0, glowColor);
         grad.addColorStop(1, 'rgba(0,0,0,0)');
         context.beginPath();
         context.fillStyle = grad;
         context.shadowColor = glowColor;
         context.shadowBlur = 60;
-        context.arc(x, y, sphereRadius, 0, 2 * Math.PI);
+        context.arc(x, y, sphereRadiusScaled, 0, 2 * Math.PI);
         context.fill();
       }
 
@@ -187,7 +205,7 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
         context.strokeStyle = ringColor;
         context.lineWidth = 2;
         context.shadowBlur = 0;
-        context.arc(x, y, sphereRadius, 0, 2 * Math.PI);
+        context.arc(x, y, sphereRadiusScaled, 0, 2 * Math.PI);
         context.stroke();
       }
     };
@@ -200,7 +218,7 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
       context.lineWidth = 2;
       context.shadowBlur = 10;
       context.shadowColor = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`;
-      context.arc(x, y, containerRadius, 0, 2 * Math.PI);
+      context.arc(x, y, containerRadiusScaled, 0, 2 * Math.PI);
       context.stroke();
     };
 
@@ -247,22 +265,13 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
 
       particles.forEach((p) => p.update());
       particles.forEach((p) => p.draw(ctx));
-
       particles = particles.filter((p) => p.life > 0);
 
       animationId = requestAnimationFrame(animate);
     };
 
-    const resizeCanvas = () => {
-      W = container.clientWidth;
-      H = container.clientHeight;
-      canvas.width = W * dpr;
-      canvas.height = H * dpr;
-      canvas.style.width = `${W}px`;
-      canvas.style.height = `${H}px`;
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
-    };
+    resizeCanvas();
+    animate();
 
     window.addEventListener('resize', resizeCanvas);
 
@@ -277,8 +286,6 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
 
     observer.observe(container);
 
-    animate();
-
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       observer.disconnect();
@@ -287,7 +294,7 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
   }, [spheresParams, containerParams, sphereRadius, spacing]);
 
   return (
-    <div ref={containerRef} className="w-full h-screen bg-black overflow-hidden relative">
+    <div ref={containerRef} className="w-full h-[400px] sm:h-[500px] md:h-[600px] flex justify-center items-center overflow-hidden">
       <canvas ref={canvasRef} className="block w-full h-full" aria-label="Tantiens animation" />
     </div>
   );

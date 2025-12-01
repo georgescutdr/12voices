@@ -194,15 +194,7 @@ const AnimationHydra3: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      style={{
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-        margin: 0,
-        padding: 0,
-        position: 'relative',
-        backgroundColor: 'black',
-      }}
+      className="w-full h-[400px] sm:h-[500px] md:h-[600px] flex justify-center items-center overflow-hidden"
     >
       <canvas
         ref={canvasRef}

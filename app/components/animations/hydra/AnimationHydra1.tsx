@@ -153,7 +153,7 @@ const AnimationHydra1: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="w-full h-screen overflow-hidden bg-black"
+      className="w-full h-[400px] sm:h-[500px] md:h-[600px] flex justify-center items-center overflow-hidden"
     >
       <canvas
         ref={canvasRef}
