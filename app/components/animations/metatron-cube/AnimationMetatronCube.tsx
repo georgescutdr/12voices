@@ -26,20 +26,15 @@ const AnimationMetatronCube: React.FC = () => {
 
       canvas.style.width = `${W}px`;
       canvas.style.height = `${H}px`;
-
       canvas.width = W * dpr;
       canvas.height = H * dpr;
 
-      ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
     };
 
     setSize();
     window.addEventListener('resize', setSize);
-
-    const sphereBaseRadius = Math.min(W, H) * 0.06;
-    const glowPulseSpeed = 0.01;
-    const baseAlpha = 0.25;
 
     let innerRotation = 0;
     let outerRotation = 0;
@@ -55,7 +50,7 @@ const AnimationMetatronCube: React.FC = () => {
 
     const drawSphere = (x: number, y: number, radius: number, glowAlpha: number) => {
       ctx.beginPath();
-      ctx.fillStyle = `rgba(255, 255, 255, ${baseAlpha})`;
+      ctx.fillStyle = `rgba(255, 255, 255, 0.25)`;
       ctx.shadowColor = `rgba(255, 255, 255, ${glowAlpha})`;
       ctx.shadowBlur = 50;
       ctx.arc(W / 2 + x, H / 2 + y, radius, 0, Math.PI * 2);
@@ -80,19 +75,22 @@ const AnimationMetatronCube: React.FC = () => {
     const draw = () => {
       ctx.clearRect(0, 0, W, H);
 
-      const pulse = 0.2 + 0.8 * Math.abs(Math.sin(time * glowPulseSpeed));
-      const innerRadius = sphereBaseRadius * 2;
-      const outerRadius = sphereBaseRadius * 3.5;
+      // 🔥 Responsiveness FIX — recalc every frame
+      const baseRadius = Math.min(W, H) * 0.06;
+      const innerRadius = baseRadius * 2;
+      const outerRadius = baseRadius * 3.5;
 
+      const pulse = 0.2 + 0.8 * Math.abs(Math.sin(time * 0.01));
       const innerRaw = getHexagonPoints(innerRadius);
       const outerRaw = getHexagonPoints(outerRadius);
 
       const innerPoints = innerRaw.map((p) => rotate2D(p.x, p.y, innerRotation));
       const outerPoints = outerRaw.map((p) => rotate2D(p.x, p.y, -outerRotation));
+
       const allPoints = [...innerPoints, ...outerPoints];
 
-      drawSphere(0, 0, sphereBaseRadius, pulse);
-      allPoints.forEach((p) => drawSphere(p.x, p.y, sphereBaseRadius, pulse));
+      drawSphere(0, 0, baseRadius, pulse);
+      allPoints.forEach((p) => drawSphere(p.x, p.y, baseRadius, pulse));
 
       ctx.save();
       ctx.strokeStyle = `rgba(255, 255, 255, ${pulse * 0.6})`;
@@ -111,7 +109,6 @@ const AnimationMetatronCube: React.FC = () => {
           ctx.stroke();
         }
       }
-
       ctx.restore();
 
       const speedWave = (Math.sin(time * 0.005) + 1) / 2;
@@ -124,14 +121,8 @@ const AnimationMetatronCube: React.FC = () => {
       animationFrameId = requestAnimationFrame(draw);
     };
 
-    const startAnimation = () => {
-      if (!animationFrameId) draw();
-    };
-
-    const stopAnimation = () => {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = 0;
-    };
+    const startAnimation = () => draw();
+    const stopAnimation = () => cancelAnimationFrame(animationFrameId);
 
     if (isVisible) startAnimation();
     else stopAnimation();
@@ -144,14 +135,11 @@ const AnimationMetatronCube: React.FC = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
+      ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.1 }
     );
 
     if (containerRef.current) observer.observe(containerRef.current);
-
     return () => {
       if (containerRef.current) observer.unobserve(containerRef.current);
     };
