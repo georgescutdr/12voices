@@ -252,7 +252,7 @@ export default function AnimationChakra2() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full relative"
+      className="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] relative"
       style={{ minHeight: '400px' }} // ensure container has height
     >
       <canvas

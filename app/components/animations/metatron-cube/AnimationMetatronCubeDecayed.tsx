@@ -250,8 +250,7 @@ const MetatronCube: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="w-full h-screen flex justify-center items-center bg-[#111]"
-      style={{ position: "relative" }}
+      className="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] relative"
     >
       <canvas ref={canvasRef} className="block bg-transparent" />
     </div>

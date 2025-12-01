@@ -266,15 +266,7 @@ const AnimationMerkaba: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      style={{
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-        margin: 0,
-        padding: 0,
-        position: 'relative',
-        backgroundColor: '#000',
-      }}
+      className="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] relative"
     >
       <canvas
         ref={canvasRef}

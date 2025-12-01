@@ -174,6 +174,9 @@ export default function Navbar() {
                     ))}
                   </div>
                 </div>
+                <Link href="/learning/sacred-geometry/the-tantiens" className="block px-4 py-3 rounded hover:bg-gray-100 hover:pl-6 transition-all duration-300">
+                  The Tantiens
+                </Link>
 
                 {/* === SACRED GEOMETRY === */}
                 <button onClick={() => setSacredOpen(!sacredOpen)} className="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-white hover:text-black rounded transition-all">

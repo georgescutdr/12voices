@@ -158,7 +158,7 @@ const AnimationMetatronCube: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full h-screen bg-black">
+    <div ref={containerRef} className="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] relative">
       <canvas ref={canvasRef} className="w-full h-full block bg-transparent" />
     </div>
   );
