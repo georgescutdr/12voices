@@ -12,12 +12,14 @@ interface SphereParams {
   ringSpeed: number;
   glowEnabled: boolean;
   particlesAlpha: number;
+  rotationSpeed?: number; // new rotation speed
 }
 
 interface ContainerParams {
   baseColor: RGB;
   alphaRange: [number, number];
   speed: number;
+  rotationSpeed?: number; // new rotation for container
 }
 
 interface VesicaPiscisChakraParams {
@@ -28,39 +30,16 @@ interface VesicaPiscisChakraParams {
 }
 
 const defaultSpheresParams: SphereParams[] = [
-  {
-    baseColor: [138, 43, 226],
-    glowAlphaRange: [0.2, 0.6],
-    ringAlphaRange: [0.2, 0.5],
-    glowSpeed: 4,
-    ringSpeed: 3,
-    glowEnabled: true,
-    particlesAlpha: 0.5,
-  },
-  {
-    baseColor: [255, 255, 255],
-    glowAlphaRange: [0.2, 0.6],
-    ringAlphaRange: [0.2, 0.5],
-    glowSpeed: 5,
-    ringSpeed: 4,
-    glowEnabled: true,
-    particlesAlpha: 0.5,
-  },
-  {
-    baseColor: [0, 255, 180],
-    glowAlphaRange: [0.2, 0.6],
-    ringAlphaRange: [0.2, 0.5],
-    glowSpeed: 3,
-    ringSpeed: 2.5,
-    glowEnabled: true,
-    particlesAlpha: 0.5,
-  },
+  { baseColor: [138, 43, 226], glowAlphaRange: [0.2, 0.7], ringAlphaRange: [0.2, 0.5], glowSpeed: 4, ringSpeed: 3, glowEnabled: true, particlesAlpha: 0.6, rotationSpeed: 0.02 },
+  { baseColor: [255, 255, 255], glowAlphaRange: [0.2, 0.7], ringAlphaRange: [0.2, 0.5], glowSpeed: 5, ringSpeed: 4, glowEnabled: true, particlesAlpha: 0.5, rotationSpeed: -0.015 },
+  { baseColor: [0, 255, 180], glowAlphaRange: [0.2, 0.7], ringAlphaRange: [0.2, 0.5], glowSpeed: 3, ringSpeed: 2.5, glowEnabled: true, particlesAlpha: 0.5, rotationSpeed: 0.01 },
 ];
 
 const defaultContainerParams: ContainerParams = {
   baseColor: [255, 255, 255],
   alphaRange: [0.2, 0.6],
   speed: 2,
+  rotationSpeed: 0.005,
 };
 
 const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
@@ -71,6 +50,8 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const rotationRef = useRef(0);
+  const sphereRotationsRef = useRef(spheresParams.map(() => 0));
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -86,15 +67,26 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
 
     const getScale = () => {
       const w = window.innerWidth;
-      if (w < 640) return 0.6; // small screens
-      if (w < 1024) return 0.8; // medium screens
-      return 1; // large screens
+      if (w < 640) return 0.55; 
+      if (w < 1024) return 0.8; 
+      return 1;
     };
+
+    let scale = getScale();
+    let sphereRadiusScaled = sphereRadius * scale;
+    let spacingScaled = (spacing ?? sphereRadius) * scale;
+    let containerRadiusScaled = spacingScaled + sphereRadiusScaled;
+
+    const centerX = () => container.clientWidth / 2;
+    const centerY = () => container.clientHeight / 2;
 
     const resizeCanvas = () => {
       W = container.clientWidth;
       H = container.clientHeight;
-      const scale = getScale();
+      scale = getScale();
+      sphereRadiusScaled = sphereRadius * scale;
+      spacingScaled = (spacing ?? sphereRadius) * scale;
+      containerRadiusScaled = spacingScaled + sphereRadiusScaled;
 
       canvas.width = W * dpr;
       canvas.height = H * dpr;
@@ -102,30 +94,13 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
       canvas.style.height = `${H}px`;
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
-
-      sphereRadiusScaled = sphereRadius * scale;
-      spacingScaled = (spacing ?? sphereRadius) * scale;
-      containerRadiusScaled = spacingScaled + sphereRadiusScaled;
     };
 
-    let sphereRadiusScaled = sphereRadius;
-    let spacingScaled = spacing ?? sphereRadius;
-    let containerRadiusScaled = spacingScaled + sphereRadiusScaled;
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    const centerX = () => container.clientWidth / 2;
-    const centerY = () => container.clientHeight / 2;
-
-    let time = 0;
-    let animationId: number | null = null;
-
-    interface Sphere {
-      x: () => number;
-      y: () => number;
-      params: SphereParams;
-    }
-
-    const spheres: Sphere[] = spheresParams.map((params, i) => ({
-      x: centerX,
+    const spheres = spheresParams.map((params, i) => ({
+      x: () => centerX(),
       y: () => centerY() + (i - 1) * spacingScaled,
       params,
     }));
@@ -148,7 +123,7 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
         this.radius = 0;
         this.speed = 0.5 + Math.random() * 1.5;
         this.life = 1;
-        this.decay = 0.01 + Math.random() * 0.01;
+        this.decay = 0.008 + Math.random() * 0.01;
         this.color = color.replace(/[^,]+(?=\))/, alpha.toString());
         this.size = 1 + Math.random() * 2;
       }
@@ -160,105 +135,99 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
         this.life -= this.decay;
       }
 
-      draw(context: CanvasRenderingContext2D) {
+      draw(ctx: CanvasRenderingContext2D) {
         if (this.life <= 0) return;
-        context.save();
-        context.globalAlpha = this.life;
-        context.fillStyle = this.color;
-        context.shadowColor = this.color;
-        context.shadowBlur = 20;
-        context.beginPath();
-        context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        context.fill();
-        context.restore();
+        ctx.save();
+        ctx.globalAlpha = this.life;
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 20;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
       }
     }
 
     let particles: Particle[] = [];
+    let time = 0;
+    let animationId: number | null = null;
 
-    const lerp = (min: number, max: number, t: number) => min + (max - min) * t;
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
     const drawSphere = (
-      context: CanvasRenderingContext2D,
+      ctx: CanvasRenderingContext2D,
       x: number,
       y: number,
       baseRGB: RGB,
       glowAlpha: number,
-      ringAlpha: number
+      ringAlpha: number,
+      rotation: number
     ) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+
       if (glowAlpha > 0) {
-        const glowColor = `rgba(${baseRGB[0]},${baseRGB[1]},${baseRGB[2]},${glowAlpha})`;
-        const grad = context.createRadialGradient(x, y, 10, x, y, sphereRadiusScaled);
-        grad.addColorStop(0, glowColor);
+        const grad = ctx.createRadialGradient(0, 0, 10, 0, 0, sphereRadiusScaled);
+        grad.addColorStop(0, `rgba(${baseRGB[0]},${baseRGB[1]},${baseRGB[2]},${glowAlpha})`);
         grad.addColorStop(1, 'rgba(0,0,0,0)');
-        context.beginPath();
-        context.fillStyle = grad;
-        context.shadowColor = glowColor;
-        context.shadowBlur = 60;
-        context.arc(x, y, sphereRadiusScaled, 0, 2 * Math.PI);
-        context.fill();
+        ctx.fillStyle = grad;
+        ctx.shadowColor = `rgba(${baseRGB[0]},${baseRGB[1]},${baseRGB[2]},${glowAlpha})`;
+        ctx.shadowBlur = 60;
+        ctx.beginPath();
+        ctx.arc(0, 0, sphereRadiusScaled, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       if (ringAlpha > 0) {
-        const ringColor = `rgba(${baseRGB[0]},${baseRGB[1]},${baseRGB[2]},${ringAlpha})`;
-        context.beginPath();
-        context.strokeStyle = ringColor;
-        context.lineWidth = 2;
-        context.shadowBlur = 0;
-        context.arc(x, y, sphereRadiusScaled, 0, 2 * Math.PI);
-        context.stroke();
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(${baseRGB[0]},${baseRGB[1]},${baseRGB[2]},${ringAlpha})`;
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 0;
+        ctx.arc(0, 0, sphereRadiusScaled, 0, 2 * Math.PI);
+        ctx.stroke();
       }
+
+      ctx.restore();
     };
 
-    const drawContainerCircle = (context: CanvasRenderingContext2D, alpha: number, color: RGB) => {
-      const x = centerX();
-      const y = centerY();
-      context.beginPath();
-      context.strokeStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`;
-      context.lineWidth = 2;
-      context.shadowBlur = 10;
-      context.shadowColor = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`;
-      context.arc(x, y, containerRadiusScaled, 0, 2 * Math.PI);
-      context.stroke();
+    const drawContainer = (ctx: CanvasRenderingContext2D, alpha: number, color: RGB, rotation: number) => {
+      ctx.save();
+      ctx.translate(centerX(), centerY());
+      ctx.rotate(rotation);
+      ctx.beginPath();
+      ctx.strokeStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`;
+      ctx.lineWidth = 2;
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`;
+      ctx.arc(0, 0, containerRadiusScaled, 0, 2 * Math.PI);
+      ctx.stroke();
+      ctx.restore();
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, W, H);
       time += 0.02;
 
-      const containerAlphaT = (Math.sin(time * containerParams.speed) + 1) / 2;
-      const containerAlpha = lerp(
-        containerParams.alphaRange[0],
-        containerParams.alphaRange[1],
-        containerAlphaT
-      );
-
+      // container circle
+      rotationRef.current += containerParams.rotationSpeed || 0;
+      const containerAlpha = lerp(containerParams.alphaRange[0], containerParams.alphaRange[1], (Math.sin(time * containerParams.speed) + 1) / 2);
       const hueShift = Math.floor(100 + 155 * Math.abs(Math.sin(time * containerParams.speed * 0.3)));
-      const containerColor: RGB = [
-        containerParams.baseColor[0],
-        containerParams.baseColor[1],
-        hueShift,
-      ];
+      drawContainer(ctx, containerAlpha, [containerParams.baseColor[0], containerParams.baseColor[1], hueShift], rotationRef.current);
 
-      drawContainerCircle(ctx, containerAlpha, containerColor);
+      // spheres
+      spheres.forEach((s, i) => {
+        sphereRotationsRef.current[i] += s.params.rotationSpeed || 0;
 
-      spheres.forEach(({ x, y, params }) => {
-        const cx = x();
-        const cy = y();
+        const glowAlpha = s.params.glowEnabled ? lerp(s.params.glowAlphaRange[0], s.params.glowAlphaRange[1], (Math.sin(time * s.params.glowSpeed) + 1) / 2) : 0;
+        const ringAlpha = lerp(s.params.ringAlphaRange[0], s.params.ringAlphaRange[1], (Math.sin(time * s.params.ringSpeed) + 1) / 2);
 
-        const glowT = (Math.sin(time * params.glowSpeed) + 1) / 2;
-        const glowAlphaRaw = lerp(params.glowAlphaRange[0], params.glowAlphaRange[1], glowT);
-        const glowAlpha = params.glowEnabled ? glowAlphaRaw : 0;
+        drawSphere(ctx, s.x(), s.y(), s.params.baseColor, glowAlpha, ringAlpha, sphereRotationsRef.current[i]);
 
-        const ringT = (Math.sin(time * params.ringSpeed + 1) + 1) / 2;
-        const ringAlpha = lerp(params.ringAlphaRange[0], params.ringAlphaRange[1], ringT);
-
-        drawSphere(ctx, cx, cy, params.baseColor, glowAlpha, ringAlpha);
-
-        if (params.particlesAlpha > 0) {
-          for (let i = 0; i < 3; i++) {
-            const particleColor = `rgba(${params.baseColor[0]},${params.baseColor[1]},${params.baseColor[2]},0.5)`;
-            particles.push(new Particle(cx, cy, particleColor, params.particlesAlpha));
+        if (s.params.particlesAlpha > 0) {
+          for (let j = 0; j < 3; j++) {
+            particles.push(new Particle(s.x(), s.y(), `rgba(${s.params.baseColor[0]},${s.params.baseColor[1]},${s.params.baseColor[2]},0.5)`, s.params.particlesAlpha));
           }
         }
       });
@@ -270,17 +239,14 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
       animationId = requestAnimationFrame(animate);
     };
 
-    resizeCanvas();
     animate();
 
-    window.addEventListener('resize', resizeCanvas);
-
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && animationId === null) {
-        animate();
-      } else if (!entry.isIntersecting && animationId !== null) {
-        if (animationId) cancelAnimationFrame(animationId);
+      if (!entry.isIntersecting && animationId) {
+        cancelAnimationFrame(animationId);
         animationId = null;
+      } else if (entry.isIntersecting && !animationId) {
+        animate();
       }
     }, { threshold: 0.1 });
 
@@ -294,7 +260,7 @@ const VesicaPiscisChakra: React.FC<VesicaPiscisChakraParams> = ({
   }, [spheresParams, containerParams, sphereRadius, spacing]);
 
   return (
-    <div ref={containerRef} className="w-full h-[400px] sm:h-[500px] md:h-[600px] flex justify-center items-center overflow-hidden">
+    <div ref={containerRef} className="w-full h-[400px] sm:h-[500px] md:h-[600px] flex justify-center items-center overflow-hidden bg-black">
       <canvas ref={canvasRef} className="block w-full h-full" aria-label="Tantiens animation" />
     </div>
   );
