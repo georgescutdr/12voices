@@ -227,7 +227,7 @@ export default function AnimationChakra3() {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full h-full relative">
+    <div ref={containerRef} className="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] relative">
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
     </div>
   );
