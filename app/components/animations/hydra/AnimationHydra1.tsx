@@ -21,6 +21,17 @@ const AnimationHydra1: React.FC = () => {
     let width = 0;
     let height = 0;
 
+    const getScale = () => {
+      const w = window.innerWidth;
+      if (w < 768) return 0.6; // small screens
+      if (w < 1024) return 0.8; // medium
+      return 1; // large
+    };
+
+    let bodyRadius = 40;
+    let headRadius = 15;
+    let neckLength = 160;
+
     const resizeCanvas = () => {
       const rect = container.getBoundingClientRect();
       width = rect.width;
@@ -34,16 +45,18 @@ const AnimationHydra1: React.FC = () => {
 
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
+
+      const scale = getScale();
+      bodyRadius = 40 * scale;
+      headRadius = 15 * scale;
+      neckLength = 160 * scale;
     };
 
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
     const center = { x: () => width / 2, y: () => height / 2 };
-    const bodyRadius = 40;
-    const headRadius = 15;
     const numHeads = 12;
-    const neckLength = 160;
     const segments = 20;
 
     if (headsRef.current.length === 0) {
@@ -74,7 +87,6 @@ const AnimationHydra1: React.FC = () => {
         points.push({ x: px, y: py });
       }
 
-      // NON-NULL assertion fixes TypeScript error
       ctx!.beginPath();
       ctx!.strokeStyle = '#444';
       ctx!.lineWidth = 3;

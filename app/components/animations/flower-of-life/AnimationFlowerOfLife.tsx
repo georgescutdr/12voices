@@ -12,7 +12,6 @@ const AnimationFlowerOfLife: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext('2d')!;
-    const radiusFactor = 0.06;
     const maxDistanceHex = 3;
 
     const speedRanges = [
@@ -37,6 +36,13 @@ const AnimationFlowerOfLife: React.FC = () => {
 
     let layers: { x: number; y: number }[][] = [];
 
+    const getRadiusFactor = () => {
+      const width = window.innerWidth;
+      if (width < 768) return 0.09; // bigger on small
+      if (width < 1024) return 0.07; // medium
+      return 0.06; // large
+    };
+
     const resizeCanvas = () => {
       const rect = canvas.parentElement!.getBoundingClientRect();
       canvas.width = rect.width * window.devicePixelRatio;
@@ -49,6 +55,7 @@ const AnimationFlowerOfLife: React.FC = () => {
 
       const width = rect.width;
       const height = rect.height;
+      const radiusFactor = getRadiusFactor();
       const radius = Math.min(width, height) * radiusFactor;
       const horiz = radius;
       const vert = (radius * Math.sqrt(3)) / 2;
@@ -82,9 +89,8 @@ const AnimationFlowerOfLife: React.FC = () => {
     };
 
     const drawCircle = (x: number, y: number, r: number, hue: number, brightness: number) => {
-      // create a mystical gradient color
       const grad = ctx.createRadialGradient(x, y, r * 0.2, x, y, r);
-      grad.addColorStop(0, `hsla(${hue}, 80%, ${30 + brightness * 50}%, ${0.8})`);
+      grad.addColorStop(0, `hsla(${hue}, 80%, ${30 + brightness * 50}%, 0.8)`);
       grad.addColorStop(1, `hsla(${(hue + 60) % 360}, 80%, ${20 + brightness * 40}%, 0)`);
 
       ctx.fillStyle = grad;
@@ -114,7 +120,7 @@ const AnimationFlowerOfLife: React.FC = () => {
       const height = rect.height;
       const centerX = width / 2;
       const centerY = height / 2;
-      const radius = Math.min(width, height) * radiusFactor;
+      const radius = Math.min(width, height) * getRadiusFactor();
 
       ctx.clearRect(0, 0, width, height);
 
@@ -127,7 +133,7 @@ const AnimationFlowerOfLife: React.FC = () => {
 
       const brightnessT = (now % brightnessCycleDuration) / brightnessCycleDuration;
       const brightness = 0.5 + 0.5 * Math.sin(brightnessT * 2 * Math.PI);
-      const hue = (now / 100) % 360; // slow hue rotation
+      const hue = (now / 100) % 360;
 
       // draw outer circle
       ctx.beginPath();
