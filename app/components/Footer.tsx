@@ -19,8 +19,8 @@ export default function Footer() {
         {/* Contact / Links */}
         <div className="flex flex-col lg:flex-row items-center gap-6">
           <div className="flex gap-4">
-            <a href="mailto:info@yourcompany.com" className="hover:text-white transition-colors flex items-center gap-1">
-              <FiMail size={18} /> info@yourcompany.com
+            <a href="mailto:12voices.therapy@gmail.com" className="hover:text-white transition-colors flex items-center gap-1">
+              <FiMail size={18} /> 12voices.therapy@gmail.com
             </a>
           </div>
 
