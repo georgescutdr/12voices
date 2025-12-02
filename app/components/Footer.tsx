@@ -26,10 +26,20 @@ export default function Footer() {
 
           <div className="flex gap-4">
             {/* Optional social icons */}
-            <a href="#" className="hover:text-white transition-colors">
+            <a 
+              href="https://instagram.com/12voices.system/" 
+              className="hover:text-white transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FiInstagram size={18} />
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a 
+              href="https://facebook.com/12voicessystem/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
               <FiFacebook size={18} />
             </a>
           </div>

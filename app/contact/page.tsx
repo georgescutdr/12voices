@@ -4,7 +4,7 @@
 import React from "react";
 
 export default function ContactPage() {
-  const email = "12voices.therapy@gmail.com"; // replace with your real email
+  const email = "12voices.therapy@gmail.com"; 
 
   return (
     <main className="min-h-screen bg-black text-white font-sans flex flex-col justify-center items-center px-6 lg:px-24 py-12">
