@@ -54,3 +54,6 @@ body {
 .right-col {
   @apply w-full md:w-1/2 bg-black relative flex justify-center md:items-center p-2 sm:p-4;
 }
+
+
+

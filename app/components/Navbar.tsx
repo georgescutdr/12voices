@@ -28,6 +28,9 @@ export default function Navbar() {
           <Link href="/" className="px-4 py-4 rounded-md transition-all duration-300 hover:bg-white hover:text-black hover:scale-105">
             Home
           </Link>
+          <Link href="/about-us" className="px-4 py-4 rounded-md transition-all duration-300 hover:bg-white hover:text-black hover:scale-105">
+            About us
+          </Link>
           <Link href="/therapy" className="px-4 py-4 rounded-md transition-all duration-300 hover:bg-white hover:text-black hover:scale-105">
             Therapy
           </Link>
@@ -149,6 +152,7 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-black text-white border-t border-gray-700 overflow-hidden animate-fadeIn px-6 py-4 space-y-2">
           <Link href="/" className="block px-4 py-3 rounded hover:bg-white hover:text-black transition-all">Home</Link>
+          <Link href="/about-us" className="block px-4 py-3 rounded hover:bg-white hover:text-black transition-all">About us</Link>
           <Link href="/therapy" className="block px-4 py-3 rounded hover:bg-white hover:text-black transition-all">Therapy</Link>
           <Link href="/energy-and-science" className="block px-4 py-3 rounded hover:bg-white hover:text-black transition-all">Energy & Science</Link>
 
