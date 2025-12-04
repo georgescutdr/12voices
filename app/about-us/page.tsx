@@ -91,12 +91,14 @@ const AboutUsPage: React.FC = () => {
             techniques, deepen your intuition, and expand your spiritual awareness.
           </div>
 
-          <a
-            href="/contact"
-            className="mt-8 inline-block bg-black text-white px-10 py-4 font-semibold rounded-xl shadow-2xl hover:bg-gray-800 hover:scale-105 transition-transform duration-300"
-          >
-            Book a Session
-          </a>
+          <div className="flex justify-center mt-8">
+            <a
+              href="/contact"
+              className="mt-8 bg-black text-white px-10 py-4 font-semibold rounded-xl shadow-2xl hover:bg-gray-800 hover:scale-105 transition-transform duration-300"
+            >
+              Book a Session
+            </a>
+          </div>
 
         </div>
       </div>
