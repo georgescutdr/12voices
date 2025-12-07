@@ -36,9 +36,9 @@ const ReadingsPage: React.FC = () => {
 
         {/* RIGHT SIDE — OPTIONAL IMAGE OR ICON */}
         <div className="left-col">
-          <span className="text-black font-semibold">Your Logo / Image</span>
+          <span className="text-black font-semibold"></span>
         </div>
-      </div>
+      </div> 
 
       {/* INFO SECTION */}
       <section className="w-full bg-gray-50 border-gray-200 px-8 mx-auto px-6 lg:px-0 py-12 shadow-inner">
