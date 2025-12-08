@@ -142,7 +142,7 @@ const mappings: Mapping[] = [
 export default function HinduismCosmologyPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900 px-6 lg:px-24 py-12">
-      <div className="max-w-5xl mx-auto space-y-8">
+      <div className="max-w-5xl mx-auto space-y-8 text-justify">
 
         {/* HEADER */}
         <header className="space-y-4">
@@ -198,7 +198,7 @@ export default function HinduismCosmologyPage() {
         </section>
 
         {/* CONCLUSION / STORY */}
-        <section className="mt-12 space-y-4">
+        <section className="mt-12 space-y-4  text-justify">
           <p className="text-gray-700 text-lg">
             By reading the rows sequentially, one can perceive a narrative flow: from the ultimate unity (Brahman) through cycles of creation, preservation, and transformation, to the dynamics of energy, time, and cosmic order. Each myth, while allegorical, resonates with modern scientific concepts, revealing an underlying curiosity shared across centuries about the nature of reality.
           </p>

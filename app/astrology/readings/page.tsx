@@ -2,13 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
+import AnimationConstellations from "../../components/animations/constellations/AnimationConstellations";
 
 const ReadingsPage: React.FC = () => {
   return (
     <div className="page">
 
       {/* HERO SECTION */}
-      <div className="section-1">
+      <div className="section-1 text-global">
         
         {/* LEFT SIDE — TITLE & INTRO */}
         <div className="left-col">
@@ -26,29 +27,31 @@ const ReadingsPage: React.FC = () => {
             illuminate the path and help you align with your inner universe.
           </p>
 
-          <Link
-            href="/contact"
-            className="inline-block mt-6 px-6 py-3 text-white bg-black hover:bg-gray-800 font-medium text-lg rounded transition-colors"
-          >
-            Book a Reading
-          </Link>
+          <div className="flex w-full justify-center mt-20 mb-20">
+            <Link
+              href="/contact"
+              className="block mx-auto mt-6 px-6 py-3 text-white bg-black hover:bg-gray-800 font-medium text-lg rounded transition-colors text-center"
+            >
+              Book a Reading
+            </Link>
+          </div>
         </div>
 
-        {/* RIGHT SIDE — OPTIONAL IMAGE OR ICON */}
-        <div className="left-col">
-          <span className="text-black font-semibold"></span>
+        {/* RIGHT SIDE — CONSTELLATIONS ANIMATION */}
+        <div className="right-col">
+          <AnimationConstellations />
         </div>
       </div> 
 
       {/* INFO SECTION */}
-      <section className="w-full bg-gray-50 border-gray-200 px-8 mx-auto px-6 lg:px-0 py-12 shadow-inner">
+      <section className="w-full px-8 mx-auto px-6 lg:px-16 py-12 ">
         {/* Title */}
-        <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-10 text-center lg:text-left drop-shadow-sm">
+        <h1 className="h1-global">
           How Our Astrology Readings Work
-        </h2>
+        </h1>
 
         {/* Content Sections */}
-        <div className="space-y-8 text-gray-800 text-lg lg:text-xl leading-relaxed text-justify drop-shadow-sm">
+        <div className="space-y-8 text-gray-800 text-lg lg:text-xl text-global leading-relaxed text-justify">
 
           <p>
             Our readings are fully personalized based on your birth chart and the current
@@ -71,10 +74,6 @@ const ReadingsPage: React.FC = () => {
 
         </div>
       </section>
-
-
-      {/* LIGHT BACKGROUND LAYER */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-100 to-white"></div>
     </div>
   );
 };

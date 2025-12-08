@@ -8,7 +8,7 @@ const ConstellationsPage: React.FC = () => {
     <div className="page">
 
       {/* HERO SECTION */}
-      <div className="section-1">
+      <div className="section-1 text-global">
         
         {/* LEFT SIDE — INTRO TEXT */}
         <div className="left-col">
@@ -29,20 +29,17 @@ const ConstellationsPage: React.FC = () => {
         <div className="right-col">
           <AnimationConstellations />
         </div>
-
-        {/* SUBTLE BACKGROUND */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white to-gray-100 -z-10"></div>
       </div>
 
       {/* CONSTELLATION DETAILS SECTION */}
-      <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex text-justify">
+      <section className="w-full bg-gray-50 lg:px-16 px-6 sm:px-6 border-b border-gray-200 flex text-justify">
         <div className="max-w-5xl mx-auto space-y-12 relative z-10">
 
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight drop-shadow-md">
+          <h1 className="h1-global">
             The Zodiac Archetypes
-          </h2>
+          </h1>
 
-          <ul className="list-none">
+          <ul className="text-global">
             <li><strong>♈ Aries —</strong> The Fire of Beginning. Symbol of courage, initiative, and the spark of divine action. Aries awakens the soul to the joy of stepping into new beginnings.</li>
             <li><strong>♉ Taurus —</strong> The Earthly Temple. Embodies stability, devotion, and the sacredness of form and matter. Taurus grounds the spirit and fosters appreciation for beauty and abundance.</li>
             <li><strong>♊ Gemini —</strong> The Celestial Twins. Reflects duality, communication, and the interplay of mind and spirit. Gemini guides the soul to discern, connect, and express its inner truths.</li>
@@ -61,36 +58,33 @@ const ConstellationsPage: React.FC = () => {
 
       {/* COSMIC SUMMARY SECTION */}
       <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
-        <div className="max-w-5xl mx-auto space-y-8 relative z-10">
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight drop-shadow-md">
+        <div className="max-w-5xl mx-auto space-y-8 relative z-10 text-global">
+          <h1 className="h1-global">
             The Sky as a Mirror of the Inner Universe
-          </h2>
+          </h1>
 
-          <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
+          <p>
             Each constellation corresponds to a stage of the soul’s journey — from
             awakening in Aries to transcendence in Pisces. Together they compose
             the zodiacal mandala, the wheel of spiritual evolution reflected in the heavens.
           </p>
 
-          <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
+          <p>
             When contemplated inwardly, the constellations become luminous
             psychological maps. They reveal how divine intelligence expresses
             itself through character, destiny, and the unfolding of the inner cosmos.
           </p>
 
-          <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
+          <p>
             The night sky is not a distant spectacle — it is a living scripture,
             written in stars and translated by the heart.
           </p>
 
-          <p className="text-gray-800 text-lg lg:text-xl leading-relaxed font-semibold drop-shadow-sm">
+          <p>
             As above, so within. Every constellation you see is a pattern of
             consciousness reflected in your own being.
           </p>
         </div>
-
-        {/* BACKGROUND LAYER */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50 to-white shadow-inner"></div>
       </section>
     </div>
   );

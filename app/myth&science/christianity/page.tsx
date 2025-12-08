@@ -342,7 +342,7 @@ export default function ChristianityExtendedPage() {
 
 function Description({ text }: { text: string }) {
   return (
-    <p className="text-gray-700 text-lg max-w-3xl leading-relaxed">
+    <p className="text-gray-700 text-lg max-w-3xl leading-relaxed text-justify">
       {text}
     </p>
   );

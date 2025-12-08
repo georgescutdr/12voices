@@ -33,9 +33,9 @@ const PlanetsPage: React.FC = () => {
       {/* PLANETARY DETAILS SECTION */}
       <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
         <div className="max-w-5xl mx-auto space-y-12 relative z-10">
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight drop-shadow-md">
+          <h1 className="h1-global">
             The Spiritual Archetypes of the Planets
-          </h2>
+          </h1>
 
           <ul className="ul-global">
             <li>
@@ -77,24 +77,24 @@ const PlanetsPage: React.FC = () => {
 
       {/* SPIRITUAL SUMMARY SECTION */}
       <section className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex text-justify">
-        <div className="max-w-5xl mx-auto space-y-8 relative z-10">
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight drop-shadow-md">
+        <div className="max-w-5xl mx-auto space-y-8 relative z-10 text-global">
+          <h1 className="h1-global">
             The Inner Solar System of the Soul
-          </h2>
+          </h1>
 
-          <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
+          <p>
             Each planet represents a center of consciousness within us. When balanced,
             their celestial harmonies form the “music of the spheres” — the symphony of a unified soul.
           </p>
 
-          <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
+          <p>
             To meditate on the planets is to remember the divine architecture of being:
             thought (Mercury), love (Venus), will (Mars), wisdom (Jupiter), structure (Saturn),
             freedom (Uranus), compassion (Neptune), and transformation (Pluto), all orbiting
             the radiant light of the Sun within.
           </p>
 
-          <p className="text-gray-800 text-lg lg:text-xl leading-relaxed drop-shadow-sm">
+          <p>
             When we realign with these celestial intelligences, our body becomes the Earth,
             our heart the Sun, our mind the Mercury, and our intuition the Moon — the cosmos
             unfolds in harmony with the rhythm of our being.
@@ -104,9 +104,6 @@ const PlanetsPage: React.FC = () => {
             The sky above is not separate from us — it is our own expanded anatomy, reflected in stars.
           </p>
         </div>
-
-        {/* LIGHT BACKGROUND LAYER */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50 to-white shadow-inner"></div>
       </section>
     </div>
   );

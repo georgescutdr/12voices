@@ -179,7 +179,7 @@ export default function EgyptianMythologyPage() {
 
 function Description({ text }: { text: string }) {
   return (
-    <p className="text-gray-700 text-lg max-w-3xl leading-relaxed">{text}</p>
+    <p className="text-gray-700 text-lg max-w-3xl leading-relaxed text-justify">{text}</p>
   );
 }
 
