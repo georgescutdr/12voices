@@ -21,7 +21,7 @@ const TheTrinityPage: React.FC = () => {
             and how consciousness interacts with the universe.
           </p>
 
-          <ul className="list-disc list-inside text-gray-700 space-y-3 text-base lg:text-lg drop-shadow-sm">
+          <ul className="list-disc list-inside text-gray-700 space-y-3 text-base lg:text-lg">
             <li>
               All of Creation begins with a sphere — the most stable and complete form, capable of distributing energy evenly in all directions.
             </li>
@@ -52,7 +52,7 @@ const TheTrinityPage: React.FC = () => {
 
       {/* ======================= SECOND SECTION — Deep Trinity Description ======================= */}
       <div className="w-full bg-gray-50 py-16 px-8 lg:px-16 border-b border-gray-200 shadow-inner flex justify-center">
-        <div className="max-w-4xl text-gray-800 text-base lg:text-lg leading-relaxed space-y-8 drop-shadow-sm">
+        <div className="max-w-4xl text-gray-800 text-base lg:text-lg leading-relaxed space-y-8">
 
             The Trinity represents the first and main building block of Creation
 
