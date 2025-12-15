@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import AnimationFruitOfLife from '../components/animations/fruit-of-life/AnimationFruitOfLife';
 
 const AboutUsPage: React.FC = () => {
@@ -45,6 +46,69 @@ const AboutUsPage: React.FC = () => {
         {/* RIGHT COLUMN — Animation */}
         <div className="right-col">
           <AnimationFruitOfLife />
+        </div>
+      </div>
+
+      {/* ======================= MEET US SECTION ======================= */}
+      <div className="w-full py-16 px-8 lg:px-16 bg-white flex justify-center">
+        <div className="max-w-5xl w-full">
+
+          <h2 className="text-3xl font-semibold text-black drop-shadow-sm text-center mb-12">
+            Meet Us
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+            {/* Monica Mierlea */}
+            <div className="flex flex-col items-center text-center">
+              <div className="relative w-64 h-64 rounded-full overflow-hidden shadow-lg mb-6 group">
+                <Image
+                  src="/images/monica.jpg"
+                  alt="Monica Mierlea"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  sizes="(max-width: 768px) 256px, 256px"
+                  priority
+                />
+              </div>
+
+              <h3 className="text-xl font-semibold mb-2 text-gray-700 drop-shadow-sm">
+                Monica Mierlea
+              </h3>
+
+              <p className="text-gray-600 max-w-sm text-justify">
+                With many years of hands-on practice, Monica works with Reiki, Karuna, Seikim, Shamballa, Amadeus, and Huna shamanic energies, 
+                offering remote energy therapy that supports deep rest, emotional balance, and nervous system regulation. 
+                Alongside one-to-one sessions, she guides students through energy work courses and activations, 
+                helping others learn how to work confidently and responsibly with subtle energies in everyday life.
+              </p>
+            </div>
+
+            {/* Tudor Georgescu */}
+            <div className="flex flex-col items-center text-center">
+              <div className="relative w-64 h-64 rounded-full overflow-hidden shadow-lg mb-6 group">
+                <Image
+                  src="/images/tudor.jpg"
+                  alt="Tudor Georgescu"
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  sizes="(max-width: 768px) 256px, 256px"
+                />
+              </div>
+
+              <h3 className="text-xl font-semibold mb-2 text-gray-700 drop-shadow-sm">
+                Tudor Georgescu
+              </h3>
+
+              <p className="text-gray-600 max-w-sm text-justify">
+                Tudor brings a teaching-focused and intuitive approach to energy work, 
+                drawing on extensive experience with Reiki, Karuna, Seikim, Shamballa, Amadeus, and Huna shamanic traditions. 
+                His work centers on remote energetic treatments, as well as activations and structured courses designed to awaken sensitivity, 
+                deepen awareness, and support long-term spiritual and energetic development.
+              </p>
+            </div>
+
+          </div>
         </div>
       </div>
 
