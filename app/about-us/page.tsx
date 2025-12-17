@@ -88,7 +88,7 @@ const AboutUsPage: React.FC = () => {
             <div className="flex flex-col items-center text-center">
               <div className="relative w-64 h-64 rounded-full overflow-hidden shadow-lg mb-6 group">
                 <Image
-                  src="/images/tudor.jpg"
+                  src="/images/Tudor.jpg"
                   alt="Tudor Georgescu"
                   fill
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
