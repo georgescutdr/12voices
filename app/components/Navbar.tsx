@@ -24,7 +24,9 @@ export default function Navbar() {
       <nav className="px-8 py-4 flex justify-between items-center md:gap-6 text-lg font-bold">
         <div className="text-xl flex items-center space-x-3 font-bold tracking-wide">
           <Logo />
-          <span style={{ fontFamily: 'var(--font-title), serif' }}>12 Voices</span>
+          <span style={{ fontFamily: 'var(--font-title), serif' }}>
+            <span className="font-elsie font-black text-[1.4em] relative ">12</span>{' '} Voices
+          </span>
         </div>
 
 

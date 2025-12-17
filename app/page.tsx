@@ -12,7 +12,9 @@ export default function HomePage() {
           className="mt-20 text-5xl lg:text-6xl font-bold drop-shadow-xl"
           style={{ fontFamily: 'var(--font-title), serif' }} // Only this h1
         >
-          12 Voices
+          <span className="font-elsie font-black text-[1.4em] relative">12</span>
+          {' '}
+          Voices
         </h1>
 
         <div className="w-full" style={{ height: 'auto' }}>

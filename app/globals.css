@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -24,6 +25,18 @@ body {
   font-family: var(--font-body), serif;
   font-size: 18px;
   line-height: 1.75;
+}
+
+.font-title {
+  font-family: var(--font-title), serif;
+}
+
+.font-elsie {
+  font-family: var(--font-elsie), serif;
+}
+
+.font-elsie {
+  font-family: 'Elsie Swash Caps', serif;
 }
 
 .page {

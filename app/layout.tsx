@@ -1,5 +1,9 @@
 import './globals.css'
-import { Crimson_Text, Playfair_Display } from 'next/font/google'
+import {
+  Crimson_Text,
+  Playfair_Display,
+  Elsie_Swash_Caps,
+} from 'next/font/google'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
@@ -18,10 +22,24 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const elsie = Elsie_Swash_Caps({
+  subsets: ['latin'],
+  weight: ['400', '900'],
+  variable: '--font-elsie',
+  display: 'swap',
+})
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body className={`${crimson.variable} bg-black text-white`}>
+    <html
+      lang="en"
+      className={`${crimson.variable} ${playfair.variable} ${elsie.variable}`}
+    >
+      <body className="bg-black text-white">
         <Navbar />
         <main>{children}</main>
         <Footer />
