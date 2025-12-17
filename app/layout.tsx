@@ -1,51 +1,28 @@
-// src/app/layout.tsx
-'use client';
+import './globals.css'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import { Crimson_Text } from 'next/font/google'
 
-import './globals.css';  // Tailwind CSS if used
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { metadata } from './metadata'; // Import metadata
+const crimson = Crimson_Text({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-crimson',
+  display: 'swap',
+})
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [loading, setLoading] = useState(true);
-
-  // Preloader logic
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
-      <head>
-        <meta name="description" content={metadata.description} />
-        <meta name="title" content={metadata.title} />
-        <title>{metadata.title}</title>
-      </head>
-      <body className="font-sans relative flex flex-col min-h-screen bg-black text-white drop-shadow-sm">
-        {/* Preloader Spinner */}
-        {loading && (
-          <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
-            <motion.div
-              initial={{ rotate: 0 }}
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 1.2, ease: 'easeInOut' }}
-              className="w-20 h-20 border-4 border-t-transparent border-white rounded-full"
-            />
-          </div>
-        )}
-
-        {/* Navbar */}
+      <body className={`${crimson.variable} bg-black text-white`}>
         <Navbar />
-
-        {/* Main content */}
-        <main className="flex-grow p-0 m-0 sm:p-6">{children}</main>
-
-        {/* Footer */}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
-  );
+  )
 }

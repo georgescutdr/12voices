@@ -21,8 +21,8 @@ export default function Navbar() {
   return (
     <header className="bg-black text-white shadow-lg z-[9999] relative">
       {/* === TOP NAVBAR === */}
-      <nav className="px-8 py-4 flex justify-between items-center md:gap-6 text-lg font-medium">
-        <div className="text-xl flex items-center space-x-3 font-semibold tracking-wide"><Logo /><span>12 Voices</span></div>
+      <nav className="px-8 py-4 flex justify-between items-center md:gap-6 text-lg font-bold">
+        <div className="text-xl flex items-center space-x-3 font-bold tracking-wide"><Logo /><span>12 Voices</span></div>
 
         {/* === DESKTOP MENU === */}
         <div className="hidden md:flex gap-6 items-center">
