@@ -8,9 +8,13 @@ export default function HomePage() {
     <main className="min-h-screen bg-black text-white font-sans">
       {/* ANIMATION SECTION */}
       <section className="relative bg-black flex flex-col justify-center items-center text-center px-6 lg:px-24">
-        <h1 className="mt-20 text-5xl lg:text-6xl font-bold drop-shadow-xl">
+        <h1
+          className="mt-20 text-5xl lg:text-6xl font-bold drop-shadow-xl"
+          style={{ fontFamily: 'var(--font-title), serif' }} // Only this h1
+        >
           12 Voices
         </h1>
+
         <div className="w-full" style={{ height: 'auto' }}>
           <AnimationFlowerOfLife />
         </div>

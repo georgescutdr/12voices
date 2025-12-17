@@ -22,7 +22,11 @@ export default function Navbar() {
     <header className="bg-black text-white shadow-lg z-[9999] relative">
       {/* === TOP NAVBAR === */}
       <nav className="px-8 py-4 flex justify-between items-center md:gap-6 text-lg font-bold">
-        <div className="text-xl flex items-center space-x-3 font-bold tracking-wide"><Logo /><span>12 Voices</span></div>
+        <div className="text-xl flex items-center space-x-3 font-bold tracking-wide">
+          <Logo />
+          <span style={{ fontFamily: 'var(--font-title), serif' }}>12 Voices</span>
+        </div>
+
 
         {/* === DESKTOP MENU === */}
         <div className="hidden md:flex gap-6 items-center">
